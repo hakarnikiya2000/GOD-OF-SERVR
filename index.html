@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🐉 God of Server · hacking portfolio</title>
+    <!-- Font Awesome 4 (for old‑school vibe, works fine) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Google Fonts: dark, monospaced, cyberpunk style -->
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* RESET & GLOBAL */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0b0f1c;
+            color: #b0ffe0;
+            font-family: 'Share Tech Mono', monospace;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* CRT / scanline effect (optional but atmospheric) */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: repeating-linear-gradient(0deg, rgba(0,20,10,0.08) 0px, rgba(0,255,180,0.02) 2px, transparent 3px, transparent 5px);
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* terminal-like container */
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* glitchy header */
+        .header {
+            border: 2px solid #1effbc;
+            box-shadow: 0 0 20px #1effbc33, inset 0 0 10px #00a97a;
+            padding: 2rem 1.5rem;
+            background: #0a0e1aee;
+            backdrop-filter: blur(2px);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header::after {
+            content: "⚡ INITIALIZED ⚡";
+            position: absolute;
+            bottom: -12px;
+            right: 20px;
+            background: #0f1a1f;
+            color: #9efff0;
+            font-size: 0.8rem;
+            padding: 0 10px;
+            letter-spacing: 4px;
+            border-left: 2px solid cyan;
+            border-right: 2px solid cyan;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 3.2rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px #0ff, 0 0 30px #0ff, 0 0 60px #0ff;
+            color: #e5fffb;
+            letter-spacing: 6px;
+            margin-bottom: 0.5rem;
+            word-break: break-word;
+        }
+
+        .subhead {
+            font-size: 1.2rem;
+            color: #66ffcc;
+            border-bottom: 1px dashed #2effb8;
+            padding-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .matrix-tag {
+            color: #7affb7;
+            background: #112222;
+            padding: 0.3rem 1rem;
+            border-radius: 0;
+            border-left: 6px solid lawngreen;
+            font-weight: bold;
+        }
+
+        /* profile & contact grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .card {
+            background: #050a14f2;
+            border: 1px solid #1cff9e;
+            box-shadow: 0 0 15px #00ffc310, inset 0 0 10px #002b1d;
+            padding: 1.8rem 1.5rem;
+            backdrop-filter: blur(3px);
+        }
+
+        .card-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.7rem;
+            color: #00f7c3;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-left: 6px solid cyan;
+            padding-left: 18px;
+        }
+
+        .card-title i {
+            color: lawngreen;
+            font-size: 2rem;
+        }
+
+        /* email / contact lines */
+        .contact-line {
+            background: #0d1a1a;
+            padding: 1rem;
+            border: 1px solid #1effbc;
+            margin: 1.2rem 0;
+            word-break: break-all;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: 0.2s;
+        }
+
+        .contact-line:hover {
+            border-color: magenta;
+            box-shadow: 0 0 25px magenta;
+            background: #160c1c;
+        }
+
+        .contact-line i {
+            font-size: 1.8rem;
+            width: 40px;
+            color: #0ff;
+        }
+
+        .contact-line a, .contact-line span {
+            color: #abfff0;
+            text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            letter-spacing: 1.5px;
+        }
+
+        .contact-line a:hover {
+            color: #ff77ff;
+            text-shadow: 0 0 8px white;
+        }
+
+        /* youtube / telegram boxes */
+        .social-box {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-item {
+            flex: 1 1 200px;
+            background: #07100e;
+            border: 2px solid #56ffb4;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: 0.2s;
+        }
+
+        .social-item:hover {
+            border-color: violet;
+            transform: scale(1.02);
+            background: #0f001f;
+        }
+
+        .social-item i {
+            font-size: 3.5rem;
+            color: aquamarine;
+            filter: drop-shadow(0 0 8px cyan);
+        }
+
+        .social-item a {
+            display: block;
+            margin-top: 0.8rem;
+            color: #b0ffe0;
+            font-size: 1.2rem;
+            text-decoration: none;
+            word-break: break-all;
+            border-bottom: 1px dotted #2effb8;
+        }
+
+        .social-item a:hover {
+            color: #ff7bff;
+            border-bottom: 2px solid hotpink;
+        }
+
+        /* collaboration section */
+        .collab-box {
+            background: #02100e;
+            border: 3px double #1effbc;
+            padding: 2.5rem 2rem;
+            margin: 3rem 0 2rem 0;
+            text-align: center;
+            box-shadow: 0 0 50px #00ff9510;
+        }
+
+        .collab-box h2 {
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+            text-shadow: 0 0 20px magenta, 0 0 40px cyan;
+            margin-bottom: 0.8rem;
+        }
+
+        .collab-box p {
+            font-size: 1.5rem;
+            color: #8effda;
+        }
+
+        .glitch {
+            animation: glitch 2s infinite;
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: skew(0deg, 0deg); opacity: 1; }
+            95% { transform: skew(2deg, 1deg); opacity: 0.9; text-shadow: -2px 0 red, 2px 0 blue; }
+            96% { transform: skew(-2deg, -1deg); text-shadow: 2px 0 red, -2px 0 blue; }
+        }
+
+        /* footer / ascii */
+        .footer {
+            margin-top: 4rem;
+            border-top: 2px solid #28ffb3;
+            padding: 2rem 0 1rem;
+            text-align: center;
+            color: #40cc99;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .footer pre {
+            color: #44ffb0;
+            font-size: 0.7rem;
+            line-height: 1.2;
+            opacity: 0.5;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            h1 { font-size: 2.2rem; letter-spacing: 2px; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .contact-line { font-size: 1rem; flex-wrap: wrap; }
+        }
+
+        /* blinking cursor effect */
+        .blink {
+            animation: blink 1.2s step-end infinite;
+            border-right: 6px solid #1effbc;
+            padding-right: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: #1effbc; }
+            50% { border-color: transparent; }
+        }
+
+        /* custom glitchy background elements (matrix-ish) */
+        .matrix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0, 255, 150, 0.02) 3px, rgba(0, 255, 150, 0.02) 6px);
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+<div class="matrix-bg"></div> <!-- subtle grid -->
+
+<div class="wrapper">
+    <!-- header -->
+    <header class="header">
+        <h1 class="glitch">🐉 GOD OF SERVER</h1>
+        <div class="subhead">
+            <span class="blink">root@hack:~# </span>
+            <span class="matrix-tag">[ web developer / 0xdark ]</span>
+        </div>
+        <div style="margin-top: 1rem; color: #75ffc0; font-size: 1.2rem;">
+            <i class="fa fa-shield" style="color:lime;"></i>  <strong># 破格・サーバーを掌握する者</strong>
+        </div>
+    </header>
+
+    <!-- contact / intro grid -->
+    <div class="grid-2">
+        <!-- left: primary contact & email -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa fa-terminal"></i> [ CONTACT ]
+            </div>
+            <div class="contact-line">
+                <i class="fa fa-envelope"></i>
+                <span>EMAIL : </span>
+                <a href="mailto:hakarnikiya@gmail.com">hakarnikiya@gmail.com</a>
+            </div>
+            <div class="contact-line">
+                <i class="fa fa-key"></i>
+                <span>COLLAB : </span>
+                <span style="color:#b3ffe0;">open for hacking tools / frontend mayhem</span>
+            </div>
+            <div style="margin-top: 2rem; background: #01100c; padding: 1rem; border-left: 4px solid cyan;">
+                <i class="fa fa-code" style="color: #1effbc;"></i>
+                <span style="margin-left: 10px;">⚡ "root access to your next project" ⚡</span>
+            </div>
+        </div>
+
+        <!-- right: availability & server quote -->
+        <div class="card">
+            <div class="card-title">
+                <i class="fa fa-globe"></i> [ STATUS ]
+            </div>
+            <div style="font-size: 1.5rem; color: #91ffd0;">
+                <p><i class="fa fa-circle" style="color: #0f0; font-size: 1rem;"></i>  ready to inject</p>
+                <p style="font-size: 1rem;">> uptime: 9999 days </p>
+                <p style="font-size: 1rem;">> last seen: /dev/urandom</p>
+            </div>
+            <div style="margin-top: 1.5rem;">
+                <span style="background:#1e2f2a; padding:8px;">"root:$6$s3rv3r$G0D..."</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- youtube + telegram CHANNELS (as requested) -->
+    <div class="social-box">
+        <div class="social-item">
+            <i class="fa fa-youtube-play"></i>
+            <a href="https://www.youtube.com/@NIKIYA-MOD" target="_blank">@NIKIYA-MOD</a>
+            <span style="display:block; font-size:0.9rem;">[ subscribe / mods ]</span>
+        </div>
+        <div class="social-item">
+            <i class="fa fa-telegram"></i>
+            <a href="https://t.me/nikiyamod" target="_blank">t.me/nikiyamod</a>
+            <span style="display:block; font-size:0.9rem;">[ channel / exploits ]</span>
+        </div>
+        <div class="social-item">
+            <i class="fa fa-github" style="color: #ddd;"></i>
+            <span style="color:#aaa;">github (private)</span>
+            <span style="display:block; font-size:0.8rem;">🛠️ god of server tools</span>
+        </div>
+    </div>
+
+    <!-- big collaboration banner (with email again, and strong call) -->
+    <div class="collab-box">
+        <h2><i class="fa fa-bolt"></i>  COLLABORATION  <i class="fa fa-bolt"></i></h2>
+        <p> > Please contact me if you are interested in collaborating with me! < </p>
+        <div style="font-size: 2rem; margin: 1rem 0; letter-spacing: 5px;">
+            <i class="fa fa-envelope" style="color: magenta;"></i>
+            <span style="background: #1a2924; padding: 0.5rem 1.5rem; border: 2px solid cyan;">hakarnikiya@gmail.com</span>
+        </div>
+        <p style="font-size: 1.3rem; color:#bbffea;">🔓 let's break the limits together – fullstack / security / server-side deity</p>
+        <pre style="color: #00c48a; margin-top: 2rem;">$  nslookup future | grep "collab"  ->  GOD_OF_SERVER</pre>
+    </div>
+
+    <!-- embed a minimal ascii / matrix effect + extra link reminder -->
+    <div style="display: flex; flex-wrap: wrap; gap: 2rem; justify-content: space-between; background: #05120f; padding: 1.5rem; border: 1px dashed cyan;">
+        <div style="flex:1; min-width:200px;">
+            <span style="color:#b3ffe0;"><i class="fa fa-laptop"></i> stack: HTML/JS/CSS · node? · rust? · pwn?</span>
+            <p style="color:#38ffb0;"><i class="fa fa-shield"></i>  always 0x41</p>
+        </div>
+        <div style="flex:1; min-width:200px; text-align:right;">
+            <span style="color:#0ff;">quick connect:</span><br>
+            <a href="mailto:hakarnikiya@gmail.com" style="color:#ffb3ff;">hakarnikiya@gmail.com</a><br>
+            <a href="https://t.me/nikiyamod" target="_blank" style="color:#9efff0;">telegram/nikiyamod</a>
+        </div>
+    </div>
+
+    <!-- footer with hidden ascii and credits -->
+    <footer class="footer">
+        <pre>
+   ▄▄▄▄▄  ▄▄▄    ▄▄       ▄▄▄▄    ▄ ▄▄   ▄▄▄▄▄      ▄▄▄▄▄▄▄▄     ▄▄▄▄▄▄▄▄   
+  ██▀▀▀▀█ █▀▀█   ██      ██▀▀█   ██▀▀█  ██▀▀▀▀█     ██▀▀▀▀▀▀     ██▀▀▀▀▀▀   
+  ██        ██   ██      ██  ██  ██  ██ ██    ██     ██           ██         
+  ██  ▄▄▄   ██   ██      ██  ██  ██  ██ ███████      ███████      ███████    
+  ██  ▀▀██  ██   ██      ██  ██  ██  ██ ██    ██          ██           ██    
+  ██▄▄▄▄█ █▄▄▄█  ██▄▄▄▄█ ██▄▄█▀  ██▄▄█  ██▄▄▄▄█      ██▄▄▄▄▄▄     ██▄▄▄▄▄▄   
+  ▀▀▀▀▀▀  ▀▀▀▀▀  ▀▀▀▀▀▀▀ ▀▀▀▀▀   ▀▀▀▀   ▀▀▀▀▀        ▀▀▀▀▀▀▀▀     ▀▀▀▀▀▀▀▀   
+        </pre>
+        <p style="margin-top: 0.5rem;">🐉 <strong>GOD OF SERVER</strong> · web developer · all rights reversed · 0xdeadbeef</p>
+        <p style="font-size:0.8rem;">✉️ hakarnikiya@gmail.com  |  📺 youtube.com/@NIKIYA-MOD  |  ✈️ t.me/nikiyamod</p>
+        <p>─── root@server:~#  ───</p>
+    </footer>
+</div>
+
+<!-- simple js just for console fun and dynamic year (optional) -->
+<script>
+    (function() {
+        // style console with hacker message
+        console.log("%c🔥 GOD OF SERVER LOADED 🔥", "background: black; color: #0ff; font-size: 20px; font-family: monospace; border: 2px dotted lime; padding: 8px;");
+        console.log("💀 contact: hakarnikiya@gmail.com | youtube: @NIKIYA-MOD | t.me/nikiyamod");
+
+        // optional small interaction: glitch effect on header when clicked (just for fun)
+        const header = document.querySelector('.header');
+        if(header) {
+            header.addEventListener('click', () => {
+                header.style.transform = 'skew(2deg, 1deg)';
+                header.style.transition = '0.08s';
+                setTimeout(() => { header.style.transform = 'skew(0deg,0deg)'; }, 100);
+            });
+        }
+
+        // dynamic year in footer (optional) 
+        const footerPre = document.querySelector('.footer pre');
+        // not necessary, but cool: matrix number effect on hover
+    })();
+</script>
+
+<!-- ensure all links open securely -->
+</body>
+</html>
