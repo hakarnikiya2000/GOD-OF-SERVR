@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🐉 god of server · hacking interface</title>
-    <!-- Font Awesome for icons (optional but adds style) -->
+    <title>🐉 GOD OF SERVER · hacking terminal</title>
+    <!-- Font Awesome for icons + voice / chat icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         * {
@@ -15,591 +15,603 @@
         }
 
         body {
-            background: radial-gradient(circle at 20% 30%, #0b0f1c, #03050a);
+            background: radial-gradient(circle at 20% 30%, #0b0f1c, #02040a);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 16px;
-            color: #00ffc3;
-            text-shadow: 0 0 5px #0fa, 0 0 2px #0f0;
+            position: relative;
+            overflow-x: hidden;
         }
 
-        /* main terminal panel */
-        .server-panel {
-            max-width: 1200px;
+        /* live hacking animation background (matrix droplets + glitch) */
+        .hacking-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.3;
+        }
+
+        canvas#matrix {
+            display: block;
             width: 100%;
-            background: rgba(8, 12, 20, 0.85);
-            backdrop-filter: blur(6px);
-            border: 2px solid #2affb6;
-            box-shadow: 0 0 30px #1affb0, 0 0 5px #0f0 inset;
-            border-radius: 28px;
+            height: 100%;
+            background: transparent;
+        }
+
+        /* main container – glassmorphic terminal */
+        .god-panel {
+            position: relative;
+            z-index: 10;
+            width: 1300px;
+            max-width: 100%;
+            background: rgba(10, 20, 30, 0.75);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 2px solid #00ffc3;
+            box-shadow: 0 0 40px #00ffc366, inset 0 0 10px #00ffc355;
+            border-radius: 32px;
             padding: 24px;
             display: flex;
             flex-direction: column;
-            gap: 24px;
-        }
-
-        /* header with glitch name */
-        .god-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px dashed #1fa;
-            padding-bottom: 10px;
-            flex-wrap: wrap;
-        }
-
-        .god-title {
-            font-size: 2.3rem;
-            font-weight: bold;
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            animation: glitch 1.8s infinite steps(1);
-        }
-        .god-title i {
-            color: #ff2a6d;
-            text-shadow: 0 0 15px red;
-            margin-right: 10px;
-        }
-
-        @keyframes glitch {
-            0%, 100% { text-shadow: 3px 0 0 #ff00aa, -3px 0 0 #00ffff; }
-            25% { text-shadow: -3px 2px 0 #ff00aa, 3px -2px 0 cyan; }
-            50% { text-shadow: 5px -1px 0 red, -5px 1px 0 blue; }
-            75% { text-shadow: -4px -2px 0 lime, 4px 2px 0 magenta; }
-        }
-
-        .status-badge {
-            background: #111a22;
-            padding: 8px 18px;
-            border-radius: 40px;
-            border: 1px solid #0fa;
-            font-size: 1.0rem;
-            color: #b5ffe7;
-        }
-
-        /* hacking animation row */
-        .hack-row {
-            background: #03080e;
-            border-radius: 60px;
-            padding: 14px 20px;
-            border: 1px solid #2affb6;
-            box-shadow: 0 0 20px #0f6;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .matrix-zone {
-            display: flex;
-            gap: 10px;
-            overflow: hidden;
-            flex: 2;
-            min-width: 240px;
-        }
-
-        .byte-stream {
-            font-size: 1.4rem;
-            background: #0c1a17;
-            padding: 6px 16px;
-            border-radius: 40px;
-            border-left: 6px solid #0f0;
-            font-weight: bold;
-            color: #b3ffc0;
-            white-space: nowrap;
-            overflow: hidden;
-            animation: scrollText 12s linear infinite;
-            width: 100%;
-        }
-        @keyframes scrollText {
-            0% { text-indent: 100%; }
-            100% { text-indent: -200%; }
-        }
-
-        .live-glitch {
-            display: flex;
-            gap: 12px;
-            font-size: 1.6rem;
-            background: #020504;
-            padding: 5px 24px;
-            border-radius: 48px;
-            border: 1px solid cyan;
-        }
-        .live-glitch span {
-            animation: flicker 1.2s infinite alternate;
-        }
-        .live-glitch span:nth-child(2) { animation-delay: 0.3s; }
-        .live-glitch span:nth-child(3) { animation-delay: 0.7s; }
-        .live-glitch span:nth-child(4) { animation-delay: 1.1s; }
-        @keyframes flicker {
-            0% { opacity: 0.3; text-shadow: 0 0 2px red; }
-            100% { opacity: 1; text-shadow: 0 0 18px cyan, 0 0 6px lime; }
-        }
-
-        /* live call box + login row */
-        .call-login-row {
-            display: flex;
             gap: 20px;
-            flex-wrap: wrap;
         }
 
-        .live-call-box {
-            flex: 2;
-            min-width: 240px;
-            background: #050d0a;
-            border-radius: 48px;
-            border: 2px solid #fa0ff0;
-            padding: 16px 24px;
-            box-shadow: 0 0 30px #ff00c3;
+        /* header with god of server + live voice orb */
+        .header {
             display: flex;
             align-items: center;
-            gap: 16px;
+            justify-content: space-between;
+            border-bottom: 2px dashed #0f0;
+            padding-bottom: 12px;
             flex-wrap: wrap;
         }
 
-        .call-icon {
-            font-size: 2.8rem;
-            animation: ring 1.2s infinite;
-        }
-        @keyframes ring {
-            0% { transform: rotate(0deg); color: #ff1177; }
-            25% { transform: rotate(10deg); color: cyan; }
-            75% { transform: rotate(-10deg); color: yellow; }
-            100% { transform: rotate(0deg); color: magenta; }
+        .title-god {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            text-shadow: 0 0 15px cyan, 0 0 30px blue;
+            color: #b5fffc;
+            background: linear-gradient(45deg, #00ffc3, #00a6ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .call-details {
+        .voice-live-box {
             display: flex;
-            flex-direction: column;
-        }
-        .call-details .number {
-            font-size: 1.7rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            background: #211322;
-            padding: 4px 16px;
-            border-radius: 30px;
-        }
-        .call-status {
-            color: #9fffff;
-            font-size: 1.1rem;
+            align-items: center;
+            gap: 20px;
+            background: #000c1a;
+            padding: 8px 20px;
+            border-radius: 60px;
+            border: 1px solid #0ff;
         }
 
-        .login-box {
-            flex: 1;
-            min-width: 200px;
-            background: #0e1b1b;
-            border-radius: 40px;
-            border: 1px solid #ffb13d;
-            padding: 16px 20px;
-            box-shadow: 0 0 28px #ffae00;
+        .voice-orb {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #00ffb3;
+            box-shadow: 0 0 20px #0ff;
+            animation: pulse-voice 1.2s infinite alternate;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: black;
+            font-size: 18px;
+        }
+
+        @keyframes pulse-voice {
+            0% { box-shadow: 0 0 5px #0ff, 0 0 15px #0ff; opacity: 0.7; transform: scale(1);}
+            100% { box-shadow: 0 0 30px #0ff, 0 0 60px #00a6ff; opacity: 1; transform: scale(1.15);}
+        }
+
+        .voice-text {
+            color: #0f0;
+            font-size: 1.3rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .voice-text i {
+            color: white;
+            margin-right: 8px;
+        }
+
+        /* login area (password: NIKCY@CHAT) */
+        .login-area {
+            background: #030812b3;
+            border: 1px solid #00ffe1;
+            border-radius: 50px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .login-label {
-            font-size: 0.9rem;
-            color: #fcd9b8;
+            color: #aaffdd;
+            font-size: 1.2rem;
+            text-transform: uppercase;
         }
-        .login-password {
-            background: black;
-            padding: 10px 14px;
-            border-radius: 60px;
-            border: 1px solid orange;
-            font-size: 1.5rem;
+
+        .login-pass-input {
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid #0f0;
+            color: #0f0;
+            font-size: 1.3rem;
+            padding: 5px 10px;
+            outline: none;
+            width: 220px;
+            font-family: inherit;
+        }
+
+        .login-pass-input::placeholder {
+            color: #2a8f7a;
+            font-size: 1rem;
+        }
+
+        .login-btn {
+            background: #0c1f1c;
+            border: 2px solid #1affd0;
+            color: #0ff;
             font-weight: bold;
-            color: gold;
-            text-align: center;
-            letter-spacing: 3px;
-            margin-top: 6px;
+            padding: 8px 28px;
+            border-radius: 40px;
             cursor: pointer;
+            font-size: 1.3rem;
             transition: 0.2s;
-        }
-        .login-password:hover {
-            background: #1f2a18;
-            border-color: #0fa;
-            box-shadow: 0 0 26px yellow;
+            box-shadow: 0 0 15px cyan;
         }
 
-        /* live chat container */
-        .chat-section {
-            background: #04100c;
-            border-radius: 32px;
-            border: 2px solid #6effe0;
-            padding: 18px;
+        .login-btn:hover {
+            background: #1affd0;
+            color: #010;
+            box-shadow: 0 0 40px #0ff;
         }
 
-        .chat-header {
+        .lock-status {
+            color: #ffb86b;
+            font-size: 1.2rem;
+            margin-left: auto;
+        }
+
+        /* 3-col core layout */
+        .dashboard {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        .col {
+            flex: 1 1 220px;
+            background: #051016b0;
+            border: 1px solid #00ccbb;
+            border-radius: 28px;
+            padding: 18px 14px;
+            backdrop-filter: blur(4px);
+            box-shadow: inset 0 0 20px #0b2f2f;
+            min-width: 240px;
+        }
+
+        .col-header {
+            color: #00ffc3;
+            font-size: 1.6rem;
+            border-bottom: 2px solid cyan;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            padding-left: 10px;
         }
-        .chat-header i {
-            background: #101f1c;
-            padding: 12px;
-            border-radius: 50%;
-            color: cyan;
+
+        /* active members list */
+        .member-list {
+            list-style: none;
+        }
+
+        .member-list li {
+            color: #b5ffe7;
+            font-size: 1.4rem;
+            padding: 8px 10px;
+            margin: 5px 0;
+            background: #0b1e24;
+            border-left: 6px solid #0ff;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            border-radius: 12px;
+            animation: flicker 3s infinite;
+        }
+
+        .member-list li i {
+            color: #00ffb3;
+            width: 24px;
+        }
+
+        @keyframes flicker {
+            0% { opacity: 0.9; text-shadow: 0 0 2px #0ff; }
+            50% { opacity: 1; text-shadow: 0 0 8px #00a6ff; }
+        }
+
+        /* chat box area */
+        .chat-box {
+            background: #030f14;
+            border-radius: 18px;
+            padding: 10px;
+            border: 1px solid teal;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
         }
 
         .chat-messages {
-            background: #02100e;
-            border-radius: 30px;
-            padding: 18px;
-            height: 200px;
+            flex: 1;
             overflow-y: auto;
-            border: 1px solid #0fa;
-            margin-bottom: 18px;
+            padding: 8px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 8px;
+            scroll-behavior: smooth;
         }
 
         .msg {
-            background: #132b26;
-            padding: 10px 18px;
-            border-radius: 30px;
-            max-width: 80%;
-            word-break: break-word;
-            border-bottom-left-radius: 6px;
-            align-self: flex-start;
-            animation: fadeUp 0.3s;
-        }
-        .msg.own {
-            background: #1c3c44;
-            border: 1px solid #00d4ff;
-            align-self: flex-end;
-            border-bottom-right-radius: 6px;
-            border-bottom-left-radius: 30px;
-        }
-        .msg .sender {
-            font-weight: bold;
-            color: #ffb347;
-            font-size: 0.8rem;
+            background: #0b262f;
+            padding: 8px 14px;
+            border-radius: 20px 20px 20px 4px;
+            color: #b0f5e6;
+            width: fit-content;
+            max-width: 90%;
+            border: 1px solid #0ff;
+            font-size: 0.95rem;
         }
 
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(10px); }
+        .msg.server {
+            background: #123138;
+            border-left: 6px solid gold;
+            font-style: italic;
         }
 
         .chat-input-area {
             display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
+            margin-top: 8px;
+            gap: 6px;
         }
 
-        #chatInput {
-            flex: 3;
-            background: #08221c;
-            border: 1px solid #2affb6;
-            border-radius: 60px;
-            padding: 16px 22px;
-            font-size: 1.2rem;
-            color: #b0ffe0;
+        .chat-input-area input {
+            flex: 1;
+            background: #011016;
+            border: 1px solid cyan;
+            border-radius: 40px;
+            padding: 12px 16px;
+            color: #0f0;
+            font-size: 1rem;
             outline: none;
         }
-        #chatInput::placeholder {
-            color: #3b6b60;
-        }
 
-        .chat-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .neon-btn {
-            background: transparent;
-            border: 2px solid #00ffb3;
-            border-radius: 60px;
-            padding: 14px 28px;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #b6ffe6;
+        .chat-input-area button {
+            background: #0a2a2a;
+            border: 1px solid cyan;
+            color: cyan;
+            border-radius: 50px;
+            width: 50px;
+            font-size: 1.5rem;
             cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 0 10px #0fa;
-            backdrop-filter: blur(4px);
-        }
-        .neon-btn:hover {
-            background: #0fa2;
-            border-color: magenta;
-            box-shadow: 0 0 30px magenta;
-            color: white;
         }
 
-        /* live call bok additional effect */
-        .call-bok-animation {
-            background: #1d0e1a;
-            border-radius: 32px;
-            padding: 6px 18px;
-            display: inline-flex;
+        /* live voice call box (visualizer simulation) */
+        .voice-visualizer {
+            display: flex;
             align-items: center;
-            gap: 8px;
-            border: 1px solid hotpink;
-            font-size: 1.4rem;
-            animation: pulsebg 2s infinite;
-        }
-        @keyframes pulsebg {
-            0% { background: #1a0c1a; }
-            50% { background: #2f1752; box-shadow: 0 0 30px violet; }
+            justify-content: space-around;
+            height: 80px;
+            background: #00141e;
+            border-radius: 60px;
+            margin-top: 18px;
+            border: 1px solid #0ff;
+            padding: 0 10px;
         }
 
-        /* footer matrix */
-        .foot-glitch {
-            text-align: center;
+        .bar {
+            width: 8px;
+            height: 30px;
+            background: cyan;
+            border-radius: 10px;
+            animation: sound 0.4s infinite alternate ease-in-out;
+        }
+
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 45px; background: #0ef; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 20px; }
+        .bar:nth-child(4) { animation-delay: 0.15s; height: 55px; background: #2effbe; }
+        .bar:nth-child(5) { animation-delay: 0.25s; height: 30px; }
+        .bar:nth-child(6) { animation-delay: 0.05s; height: 48px; }
+        .bar:nth-child(7) { animation-delay: 0.3s; height: 25px; }
+
+        @keyframes sound {
+            0% { transform: scaleY(0.3); opacity: 0.5; }
+            100% { transform: scaleY(1.5); opacity: 1; }
+        }
+
+        /* live hacking animation (glitchy text overlay) */
+        .glitch-overlay {
             font-size: 0.9rem;
-            color: #3b7365;
+            color: #7cff9e;
+            margin-top: 8px;
+            text-align: center;
+            animation: glitch 1.8s infinite;
+        }
+
+        @keyframes glitch {
+            0% { transform: skew(0deg, 0deg); opacity: 0.7; text-shadow: -2px 0 red, 2px 0 blue; }
+            20% { transform: skew(2deg, 1deg); text-shadow: 2px 1px cyan; }
+            40% { transform: skew(-2deg, -1deg); }
+            60% { transform: skew(0deg, 2deg); }
+            80% { transform: skew(2deg, 0deg); text-shadow: -2px 0 lime; }
+        }
+
+        /* active members extra */
+        .online-badge {
+            color: #00ff99;
+            font-size: 1.2rem;
+        }
+
+        .footer-small {
+            color: #2f6f6f;
+            text-align: right;
+            font-size: 0.9rem;
+            border-top: 1px dashed #0f6f6f;
+            padding-top: 12px;
+        }
+
+        i {
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
-<div class="server-panel">
-
-    <!-- header with god of server -->
-    <div class="god-header">
-        <div class="god-title">
-            <i class="fas fa-skull"></i> GOD OF SERVER
-        </div>
-        <div class="status-badge">
-            <i class="fas fa-bolt"></i> root@hack:~# 
-        </div>
+    <!-- live hacking background matrix effect -->
+    <div class="hacking-bg">
+        <canvas id="matrix"></canvas>
     </div>
 
-    <!-- live hacking animation row -->
-    <div class="hack-row">
-        <div class="matrix-zone">
-            <div class="byte-stream">
-                > 0x7F 0x9C 0x3A 🧬 SQL INJECT ⚡ 0x55AA 0xDEAD 😈 0xBEEF :: ACCESSING /etc/passwd █ 0xFF
-            </div>
-        </div>
-        <div class="live-glitch">
-            <span>⚡</span><span>🌀</span><span>💀</span><span>⬇️</span>
-        </div>
-    </div>
+    <!-- main interface -->
+    <div class="god-panel">
 
-    <!-- LIVE CALL BOX + LOGIN PASSWORD (NIKCY@CHAT) side by side -->
-    <div class="call-login-row">
-        <!-- live call bok (call box) -->
-        <div class="live-call-box">
-            <div class="call-icon"><i class="fas fa-phone-alt"></i></div>
-            <div class="call-details">
-                <span class="number">+1 (702) 865-😈😈😈</span>
-                <span class="call-status"><i class="fas fa-wave-square"></i> LIVE CALL BOK ACTIVE · tapping 192.168.0.45</span>
-            </div>
-            <div class="call-bok-animation">
-                🔴 RECEIVING <i class="fas fa-broadcast-tower"></i> 
+        <!-- header with god of server + live voice coll bok -->
+        <div class="header">
+            <span class="title-god"><i class="fas fa-skull"></i> GOD OF SERVER <i class="fas fa-server"></i></span>
+            <div class="voice-live-box">
+                <div class="voice-orb"><i class="fas fa-microphone-alt"></i></div>
+                <span class="voice-text"><i class="fas fa-wave-square"></i> LIVE VOICE COLL BOK</span>
             </div>
         </div>
 
-        <!-- login password box (exact NIKCY@CHAT) -->
-        <div class="login-box">
-            <div class="login-label"><i class="fas fa-lock"></i> root auth required</div>
-            <div class="login-password" id="loginDisplay" title="click to copy/clipboard (simulated)">
-                NIKCY@CHAT
+        <!-- login area with password NIKCY@CHAT -->
+        <div class="login-area">
+            <span class="login-label"><i class="fas fa-lock"></i> root@access:</span>
+            <input type="password" id="passwordInput" class="login-pass-input" placeholder="********" value="NIKCY@CHAT">
+            <button class="login-btn" id="loginBtn"><i class="fas fa-key"></i> UNLOCK</button>
+            <span class="lock-status" id="lockStatus"><i class="fas fa-ban"></i> secured</span>
+        </div>
+
+        <!-- 3 column dashboard -->
+        <div class="dashboard">
+            <!-- Column 1: active members list -->
+            <div class="col">
+                <div class="col-header"><i class="fas fa-users"></i> ACTIVE MEMBERS</div>
+                <ul class="member-list" id="memberList">
+                    <li><i class="fas fa-user-secret"></i> zer0_c0de <span class="online-badge">●</span></li>
+                    <li><i class="fas fa-user-ninja"></i> root_nikcy <span class="online-badge">●</span></li>
+                    <li><i class="fas fa-user-hacker"></i> bit_flip <span class="online-badge">●</span></li>
+                    <li><i class="fas fa-robot"></i> god_server <span class="online-badge">●</span></li>
+                    <li><i class="fas fa-user-astronaut"></i> dark_5 hell <span class="online-badge">●</span></li>
+                </ul>
+                <div class="glitch-overlay">[!] live sniffing 0.4.2 alpha</div>
             </div>
-            <div style="font-size: 0.85rem; margin-top: 8px; color: #b2b98c;">⬆️ use this key · click to copy</div>
-        </div>
-    </div>
 
-    <!-- LIVE CHAT SECTION -->
-    <div class="chat-section">
-        <div class="chat-header">
-            <i class="fas fa-comment-dots"></i> 
-            <span>live.shell #chat [encrypted]</span>
-            <span style="font-size: 0.9rem; background: #08110e; padding: 6px 16px; border-radius: 50px;">🟢 1337 online</span>
-        </div>
+            <!-- Column 2: CHAT BOX (main) -->
+            <div class="col" style="flex: 2 1 380px;">
+                <div class="col-header"><i class="fas fa-comment-dots"></i> CHAT BOX · secure</div>
+                <div class="chat-box" id="chatBox">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="msg server"><i class="fas fa-shield-halfling"></i> SERVER: Welcome, agent. type your message</div>
+                        <div class="msg">NIKCY: access granted?</div>
+                        <div class="msg server">SERVER: use password NIKCY@CHAT</div>
+                    </div>
+                    <div class="chat-input-area">
+                        <input type="text" id="chatInput" placeholder="encrypt message...">
+                        <button id="sendChatBtn"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <!-- live voice bok visualizer inside same column -->
+                <div class="voice-visualizer">
+                    <div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div><div class="bar"></div>
+                    <span style="color:#0ff; margin-left: 8px;">VOICE BOK</span>
+                </div>
+            </div>
 
-        <!-- chat messages container -->
-        <div class="chat-messages" id="chatMessages">
-            <div class="msg"><span class="sender">🧙 dark::</span> welcome to god of server</div>
-            <div class="msg"><span class="sender">💻 root:</span> live call bok intercepting...</div>
-            <div class="msg own"><span class="sender">⚡ you:</span> ?</div>
-        </div>
-
-        <!-- chat input + send button -->
-        <div class="chat-input-area">
-            <input type="text" id="chatInput" placeholder="Type your message... (live chat)">
-            <div class="chat-actions">
-                <button class="neon-btn" id="sendChatBtn"><i class="fas fa-paper-plane"></i> send</button>
-                <button class="neon-btn" id="hackAddBtn"><i class="fas fa-bug"></i> 0x7F</button>
+            <!-- Column 3: extra hacking animations & live status -->
+            <div class="col">
+                <div class="col-header"><i class="fas fa-bolt"></i> LIVE HACK ANIM</div>
+                <div style="padding: 10px; background:#02161f; border-radius: 28px; text-align: center;">
+                    <i class="fas fa-circle-nodes fa-3x" style="color:lime; animation: pulse-voice 1s infinite;"></i>
+                    <div style="font-size: 1.8rem; margin: 10px 0;">⚡</div>
+                    <div id="hackText" style="color: #b5ffe7; min-height: 40px;">> probing firewalls...</div>
+                    <div style="display: flex; justify-content: center; gap: 10px; margin: 16px 0;">
+                        <i class="fas fa-database" style="color: #0ff;"></i>
+                        <i class="fas fa-network-wired" style="color: #f0f;"></i>
+                        <i class="fas fa-bug" style="color: #0f0;"></i>
+                    </div>
+                    <div class="glitch-overlay">[UDP flood] · [SYN] · [DDoS]</div>
+                </div>
             </div>
         </div>
-        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
-            <span style="background:#111f1c; padding:6px 20px; border-radius:40px">⚠️ chat is live · injected animation</span>
+
+        <div class="footer-small">
+            <i class="fas fa-shield"></i> GOD OF SERVER v2.3 – live voice bok active · 12 peers encrypted
         </div>
     </div>
 
-    <!-- footer hack animation constant -->
-    <div class="foot-glitch">
-        <i class="fas fa-circle-nodes"></i> SERVER NODES: 23 active · 0x7F DE 0xAD BE 0xEF · <span id="liveTimestamp"></span>
-    </div>
-</div>
+    <script>
+        (function() {
+            // -------------------- MATRIX BACKGROUND (live hacking animation) --------------------
+            const canvas = document.getElementById('matrix');
+            const ctx = canvas.getContext('2d');
 
-<script>
-    (function() {
-        // --- live chat functionality ---
-        const chatMessages = document.getElementById('chatMessages');
-        const chatInput = document.getElementById('chatInput');
-        const sendBtn = document.getElementById('sendChatBtn');
-        const hackBtn = document.getElementById('hackAddBtn');
-        const loginDisplay = document.getElementById('loginDisplay');
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
 
-        // system bot names for hacking style
-        const hackNames = ['daemon', 'cortex', '0xGOD', 'nikcy', 'null_ptr', 'gH0st', 'SERVER'];
+            const katakana = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            const chars = katakana.split('');
 
-        // function to add a message (if isOwn = true, align right)
-        function addMessage(text, isOwn = false, senderName = null) {
-            if (!text.trim()) return;
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('msg');
-            if (isOwn) msgDiv.classList.add('own');
+            const fontSize = 14;
+            const columns = canvas.width / fontSize;
+            const drops = new Array(Math.floor(columns)).fill(1);
 
-            const senderSpan = document.createElement('span');
-            senderSpan.classList.add('sender');
-            // if sender name provided use it, else default
-            let displaySender = senderName ? senderName : (isOwn ? '⚡ you' : '👾 hackbot');
-            if (!isOwn && !senderName) {
-                // random hacker-like sender
-                const r = Math.floor(Math.random() * hackNames.length);
-                displaySender = hackNames[r] + '::';
-            } else if (!senderName && isOwn) {
-                displaySender = '⚡ you';
+            function drawMatrix() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.03)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#0f0';
+                ctx.font = fontSize + 'px monospace';
+
+                for (let i = 0; i < drops.length; i++) {
+                    const text = chars[Math.floor(Math.random() * chars.length)];
+                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                    if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                    drops[i]++;
+                }
+            }
+            setInterval(drawMatrix, 50);
+
+            // -------------------- CHAT FUNCTIONALITY --------------------
+            const chatMessages = document.getElementById('chatMessages');
+            const chatInput = document.getElementById('chatInput');
+            const sendBtn = document.getElementById('sendChatBtn');
+
+            function addMessage(sender, text, isServer = false) {
+                const msgDiv = document.createElement('div');
+                msgDiv.classList.add('msg');
+                if (isServer) msgDiv.classList.add('server');
+                // simple icon based on sender
+                const icon = isServer ? '<i class="fas fa-terminal"></i> ' : '<i class="fas fa-user"></i> ';
+                msgDiv.innerHTML = icon + sender + ': ' + text;
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
             }
 
-            senderSpan.innerText = displaySender + ' ';
-            msgDiv.appendChild(senderSpan);
-            msgDiv.appendChild(document.createTextNode(text));
-            chatMessages.appendChild(msgDiv);
-            // scroll to bottom
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        // send own message
-        function sendOwnMessage() {
-            const txt = chatInput.value.trim();
-            if (txt !== '') {
-                addMessage(txt, true, '⚡ you');
+            sendBtn.addEventListener('click', () => {
+                const txt = chatInput.value.trim();
+                if (txt === '') return;
+                addMessage('you', txt);
                 chatInput.value = '';
-                // sometimes auto reply after short delay (hacking vibe)
+                // Simulate a quick reply after 600ms (hacking-like)
                 setTimeout(() => {
-                    addMessage('🖥️ command injected: ' + txt.split(' ').join('_'), false, 'SERVER:');
+                    addMessage('god_server', '> ' + txt.split('').reverse().join('') + ' [encrypted]', true);
                 }, 600);
-            }
-        }
-
-        sendBtn.addEventListener('click', sendOwnMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                sendOwnMessage();
-            }
-        });
-
-        // hack button: adds random "hacking animation" message
-        hackBtn.addEventListener('click', () => {
-            const codes = ['0x7F', '0x9C', '0xDEAD', '0xBEEF', '!root', 'nikcy_access', 'call_bok_payload', '🕸️ SQL MAP', '🛜 backend exploit'];
-            const rand = codes[Math.floor(Math.random() * codes.length)];
-            const rndMsg = `> injecting ${rand} · ${Math.floor(Math.random()*999)} ms`;
-            addMessage(rndMsg, false, '⚡ hack-anim:');
-
-            // also glitch the login display for fun (animation effect)
-            loginDisplay.style.transform = 'scale(1.05)';
-            loginDisplay.style.color = '#ff66aa';
-            setTimeout(() => {
-                loginDisplay.style.transform = 'scale(1)';
-                loginDisplay.style.color = 'gold';
-            }, 200);
-
-            // extra call bok effect: small animation in call box (append temp text)
-            const callBox = document.querySelector('.call-bok-animation');
-            if (callBox) {
-                callBox.innerHTML += ' ⚡';
-                setTimeout(() => {
-                    callBox.innerHTML = '🔴 RECEIVING <i class="fas fa-broadcast-tower"></i>';
-                }, 800);
-            }
-        });
-
-        // click on login password (NIKCY@CHAT) => copy simulation + popup (show as copied)
-        loginDisplay.addEventListener('click', function() {
-            // copy text to clipboard (if supported)
-            const textToCopy = 'NIKCY@CHAT';
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('🔑 password "' + textToCopy + '" copied to clipboard (simulated)');
-            }).catch(() => {
-                // fallback
-                prompt('manual copy (clipboard blocked):', textToCopy);
             });
 
-            // visual feedback
-            loginDisplay.innerText = '✓ COPIED';
-            setTimeout(() => {
-                loginDisplay.innerText = 'NIKCY@CHAT';
-            }, 1000);
-        });
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendBtn.click();
+            });
 
-        // live timestamp update in footer
-        function updateTimestamp() {
-            const d = new Date();
-            const ts = d.toISOString().slice(11,19) + ' UTC';
-            document.getElementById('liveTimestamp').innerText = `⏳ sys ${ts}`;
-        }
-        setInterval(updateTimestamp, 1000);
-        updateTimestamp();
+            // -------------------- LOGIN with password NIKCY@CHAT --------------------
+            const passInput = document.getElementById('passwordInput');
+            const loginBtn = document.getElementById('loginBtn');
+            const lockStatus = document.getElementById('lockStatus');
 
-        // additional fake periodic messages (live hacking animation)
-        setInterval(() => {
-            // only if chat is not too full (optional)
-            if (chatMessages.children.length < 25) {
-                const hackReplies = [
-                    '🛡️ IDS bypass 10.0.0.1',
-                    '🔓 port 22 open',
-                    '💣 call_bok: 2 incoming',
-                    '📡 sniffing handshake',
-                    '🔑 NIKCY@CHAT valid',
-                    '🕳️ dropping root shell'
-                ];
-                const randomMsg = hackReplies[Math.floor(Math.random() * hackReplies.length)];
-                addMessage(randomMsg, false, '🖧 server event:');
+            function checkPassword() {
+                const pwd = passInput.value.trim();
+                if (pwd === 'NIKCY@CHAT') {
+                    lockStatus.innerHTML = '<i class="fas fa-lock-open"></i> unlocked (god mode)';
+                    lockStatus.style.color = '#0f0';
+                    addMessage('SERVER', 'ACCESS GRANTED. welcome GOD OF SERVER.', true);
+                } else {
+                    lockStatus.innerHTML = '<i class="fas fa-ban"></i> access denied';
+                    lockStatus.style.color = '#ff6b6b';
+                    addMessage('SERVER', 'ACCESS DENIED. invalid password', true);
+                }
             }
-        }, 7000); // every 7 seconds
 
-        // simulate some call bok live addition (call bok effect always visible)
-        const callBokDiv = document.querySelector('.call-bok-animation');
-        if (callBokDiv) {
-            setInterval(() => {
-                callBokDiv.style.opacity = '0.7';
-                setTimeout(() => callBokDiv.style.opacity = '1', 200);
-            }, 3000);
-        }
+            loginBtn.addEventListener('click', checkPassword);
+            passInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') checkPassword();
+            });
 
-        // welcome message after page load
-        window.addEventListener('load', () => {
+            // prefill and check if you want (optional)
+            passInput.value = 'NIKCY@CHAT';   // prefilled for convenience
+            // small demo: auto show unlocked (optional)
             setTimeout(() => {
-                addMessage('⚡ god of server live. chat with NIKCY@CHAT', false, 'SYSTEM:');
+                lockStatus.innerHTML = '<i class="fas fa-lock-open"></i> unlocked (god mode)';
+                lockStatus.style.color = '#0f0';
             }, 500);
-        });
-    })();
-</script>
 
-<!-- small extra style for live call bok blink -->
-<style>
-    /* additional call bok glitch */
-    .live-call-box {
-        transition: box-shadow 0.3s;
-    }
-    .live-call-box:hover {
-        box-shadow: 0 0 60px #ff44ee;
-    }
-    .login-password {
-        user-select: all;
-        background: #091510;
-    }
-    /* width */
-    ::-webkit-scrollbar { width: 8px; background: #02221c; }
-    ::-webkit-scrollbar-thumb { background: #00b38f; border-radius: 20px; }
-</style>
+            // -------------------- LIVE HACKING ANIMATION (changing text) --------------------
+            const hackTextDiv = document.getElementById('hackText');
+            const phrases = [
+                '> root access: 45.33.22.1',
+                '> bypass IDS/IPS ...',
+                '> SQL injection 🌐',
+                '> payload sent :: GodMode',
+                '> 0-day挖掘中...',
+                '> 后门安装: ✓',
+                '> live voice bok encoded',
+                '> sniffing packets...'
+            ];
+            let idx = 0;
+            setInterval(() => {
+                hackTextDiv.textContent = phrases[idx % phrases.length];
+                idx++;
+            }, 1200);
+
+            // -------------------- ACTIVE MEMBERS (small live animation) --------------------
+            const memberList = document.getElementById('memberList');
+            const members = [
+                '<li><i class="fas fa-user-secret"></i> zer0_c0de <span class="online-badge">●</span></li>',
+                '<li><i class="fas fa-user-ninja"></i> root_nikcy <span class="online-badge">●</span></li>',
+                '<li><i class="fas fa-user-hacker"></i> bit_flip <span class="online-badge">●</span></li>',
+                '<li><i class="fas fa-robot"></i> god_server <span class="online-badge">●</span></li>',
+                '<li><i class="fas fa-user-astronaut"></i> dark_5 hell <span class="online-badge">●</span></li>',
+                '<li><i class="fas fa-user-shield"></i> proxy_master <span class="online-badge">●</span></li>',
+                '<li><i class="fas fa-skull"></i> nikcy_ ghost <span class="online-badge">●</span></li>'
+            ];
+            let memberIndex = 0;
+            setInterval(() => {
+                // subtle change: replace one member randomly for "active" feeling
+                if (Math.random() > 0.4) {
+                    const randomMember = members[Math.floor(Math.random() * members.length)];
+                    // update first item sometimes just to show change, but keep it fresh
+                    const items = memberList.querySelectorAll('li');
+                    if (items.length > 0) {
+                        // change one random item's text (simulate active)
+                        const randItem = items[Math.floor(Math.random() * items.length)];
+                        randItem.style.opacity = '0.7';
+                        setTimeout(() => randItem.style.opacity = '1', 200);
+                    }
+                }
+            }, 3000);
+
+            // extra: add new member to list after 10 seconds (just to demonstrate dynamic)
+            setTimeout(() => {
+                const newLi = document.createElement('li');
+                newLi.innerHTML = '<i class="fas fa-user"></i> new_h4cker <span class="online-badge">●</span>';
+                memberList.appendChild(newLi);
+                addMessage('SERVER', 'new active member: new_h4cker joined', true);
+            }, 7000);
+        })();
+    </script>
 </body>
 </html>
