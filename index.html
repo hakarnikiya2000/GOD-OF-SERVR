@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ God of Server · pair code</title>
-    <!-- sleek "hacking" style: dark matrix, glitch, neon -->
+    <title>🇱🇰 GOD OF SERVER · SRI LANKA · pair code</title>
     <style>
         * {
             margin: 0;
@@ -15,422 +14,438 @@
 
         body {
             min-height: 100vh;
-            background: radial-gradient(circle at 20% 30%, #0b0f1c, #03050a);
+            background: #0b1a0f;
+            background-image: 
+                linear-gradient(0deg, #0c1e12 1px, transparent 1px),
+                linear-gradient(90deg, #0c1e12 1px, transparent 1px);
+            background-size: 30px 30px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 1rem;
             position: relative;
-            overflow-x: hidden;
         }
 
-        /* matrix rain background effect (very subtle) */
-        body::before {
+        /* flicker overlay */
+        body::after {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: repeating-linear-gradient(0deg, 
-                rgba(0, 255, 0, 0.02) 0px, 
-                rgba(0, 0, 0, 0.9) 2px,
-                rgba(0, 255, 0, 0.03) 3px,
-                #000 5px);
+            background: radial-gradient(circle at 30% 40%, #1a3a1a, #030803);
+            opacity: 0.5;
+            mix-blend-mode: multiply;
             pointer-events: none;
             z-index: 0;
         }
 
-        /* main card — terminal / hacking panel */
         .god-panel {
             position: relative;
-            z-index: 10;
-            max-width: 520px;
+            z-index: 20;
+            max-width: 600px;
             width: 100%;
-            background: rgba(10, 20, 15, 0.85);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            border: 2px solid #2eff9e;
-            box-shadow: 0 0 35px #00ff9f4d, 0 0 10px #00ff9f inset;
-            border-radius: 28px 28px 24px 24px;
-            padding: 2rem 1.8rem 2.2rem;
-            color: #b7ffcf;
-            transition: 0.2s;
+            background: rgba(6, 18, 10, 0.9);
+            backdrop-filter: blur(4px);
+            border: 3px solid #00ff99;
+            box-shadow: 0 0 40px #00ff80, 0 0 15px #39ff9e inset;
+            border-radius: 40px 40px 30px 30px;
+            padding: 2rem 2rem 2.5rem;
+            color: #bbffd1;
         }
 
-        /* glitchy header */
-        .glitch-wrapper {
-            text-align: center;
+        /* sri lanka flag hint */
+        .flag-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
             margin-bottom: 1.5rem;
-            border-bottom: 1px dashed #2eff9e;
-            padding-bottom: 0.8rem;
+            background: #0f2f1a;
+            padding: 0.6rem 1.2rem;
+            border-radius: 60px;
+            border: 1px solid #43ffa2;
+            width: fit-content;
+        }
+
+        .flag-bar span {
+            font-size: 2rem;
+            filter: drop-shadow(0 0 4px #ffd966);
+        }
+
+        .flag-bar .country-text {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: 3px;
+            color: #f0ffb0;
+            text-shadow: 0 0 10px yellowgreen;
         }
 
         .glitch {
-            font-size: 2.6rem;
-            font-weight: bold;
+            font-size: 2.8rem;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            color: #dcffdf;
-            text-shadow: 0.05em 0 0 rgba(255,0,100,0.8), -0.05em -0.025em 0 rgba(0,255,255,0.8);
-            animation: glitch-shake 0.3s infinite alternate;
+            color: #c6ffd9;
+            text-shadow: 0.03em 0 0 #ff00b3, -0.03em -0.02em 0 #00ebff;
+            animation: glitchtweak 0.4s infinite alternate;
+            line-height: 1.1;
             word-break: break-word;
         }
 
-        .glitch small {
-            font-size: 1.1rem;
-            display: block;
-            letter-spacing: 2px;
-            color: #9effb1;
-            text-shadow: 0 0 5px #0f0;
-            opacity: 0.9;
-        }
-
-        @keyframes glitch-shake {
-            0% { transform: translate(0); }
+        @keyframes glitchtweak {
+            0% { transform: translate(0); opacity: 1; }
             20% { transform: translate(-2px, 1px); }
             40% { transform: translate(2px, -1px); }
-            60% { transform: translate(-1px, 0); }
-            80% { transform: translate(1px, 0); }
+            60% { transform: skew(0.5deg, -0.2deg); }
+            80% { transform: skew(-0.5deg, 0.2deg); }
             100% { transform: translate(0); }
         }
 
-        .subtitle {
-            font-size: 1rem;
-            color: #9affb3;
-            background: #0f2419;
-            display: inline-block;
-            padding: 0.35rem 1.2rem;
+        .subhead {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0 2rem 0;
+            background: #112213;
+            padding: 0.5rem 1rem;
             border-radius: 30px;
-            border: 1px solid #23f07c;
-            letter-spacing: 1.5px;
-            margin-bottom: 2rem;
-            margin-top: 0.4rem;
-            box-shadow: 0 0 12px #1eff6e;
-        }
-
-        .section-title {
-            font-size: 1.2rem;
-            margin: 1.5rem 0 0.8rem 0;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            border-left: 4px solid #2eff9e;
-            padding-left: 12px;
-            text-transform: uppercase;
-            font-weight: bold;
-            color: #b0ffc6;
-            text-shadow: 0 0 4px #0f0;
-        }
-
-        .whatsapp-box {
-            background: #09120e;
-            border: 1px solid #2eff9e;
-            border-radius: 40px;
-            padding: 0.5rem 0.5rem 0.5rem 1.8rem;
-            display: flex;
-            align-items: center;
+            border: 1px solid #1eff8c;
+            font-size: 1.1rem;
+            color: #baffc6;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            box-shadow: 0 0 15px #27ff8c3a;
         }
 
-        .whatsapp-box span {
-            color: #b1ffc1;
-            font-size: 1.2rem;
+        .subhead .lk-badge {
+            background: #000;
+            color: #c5ffae;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            border: 1px dashed #18ff87;
+        }
+
+        .input-section {
+            margin: 2rem 0 1.2rem;
+        }
+
+        .label-icon {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            margin-bottom: 0.7rem;
+            color: #dbffd7;
+            border-left: 5px solid #43ffa2;
+            padding-left: 16px;
+            text-transform: uppercase;
+        }
+
+        .whatsapp-group {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background: #0d1d12;
+            border: 2px solid #34ff9e;
+            border-radius: 80px;
+            padding: 0.3rem 0.3rem 0.3rem 1.8rem;
+            gap: 8px;
+            box-shadow: 0 0 20px #47ff8b;
+        }
+
+        .whatsapp-group .prefix {
+            font-size: 1.6rem;
+            color: #d0ffbe;
+            font-weight: bold;
+        }
+
+        .whatsapp-group .lk-code {
+            background: #124f29;
+            padding: 0.5rem 0.9rem;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #e2ffb0;
+            border: 1px solid #64ffa4;
             letter-spacing: 1px;
         }
 
-        .whatsapp-box input {
-            flex: 2 1 180px;
+        .whatsapp-group input {
+            flex: 3 1 200px;
             background: transparent;
             border: none;
-            padding: 0.8rem 0.2rem;
-            color: #eeffd8;
-            font-size: 1.3rem;
+            padding: 1rem 0.3rem;
+            color: white;
+            font-size: 1.6rem;
             font-weight: bold;
             outline: none;
-            border-bottom: 1px dashed #3effa0;
+            border-bottom: 2px dotted #4aff9e;
         }
 
-        .whatsapp-box input::placeholder {
-            color: #437559;
-            font-weight: normal;
-            font-size: 1rem;
+        .whatsapp-group input::placeholder {
+            color: #2c6b42;
+            font-size: 1.1rem;
         }
 
-        .generate-btn {
-            background: #101f17;
-            border: 1.5px solid #1df07c;
-            color: #bcffd1;
-            font-weight: bold;
-            padding: 0.8rem 1.5rem;
+        .niki-badge {
+            background: #102f1b;
+            border: 2px solid #50ffa8;
+            color: #e3ffe6;
+            padding: 0.8rem 2rem;
             border-radius: 40px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 0 15px #19f07e;
-            letter-spacing: 1.5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-left: auto;
-        }
-
-        .generate-btn:hover {
-            background: #1f3d2d;
-            box-shadow: 0 0 28px #00ff88;
-            color: white;
-            border-color: #b3ffc6;
-            transform: scale(1.02);
-        }
-
-        .pair-code-area {
-            background: #0b130f;
-            border-radius: 16px;
-            padding: 1.2rem;
-            border: 1px solid #42ff9f;
-            margin: 1.8rem 0 1rem;
-            word-break: break-word;
             font-size: 1.8rem;
-            font-weight: bold;
+            font-weight: 800;
             text-align: center;
-            color: #d4ffd4;
-            text-shadow: 0 0 20px #00cc66;
-            box-shadow: inset 0 0 20px #040f09, 0 0 30px #1aff8c;
+            margin: 2rem 0 1.5rem;
+            box-shadow: 0 0 25px #00ff6a;
             letter-spacing: 4px;
         }
 
-        .pair-code-area span {
-            font-size: 2.2rem;
-            background: #1e3327;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            border: 1px solid #51ffa8;
-            display: inline-block;
-        }
-
-        .nikki-badge {
-            background: #131f18;
-            border-radius: 50px;
-            padding: 0.3rem 1rem;
-            border: 2px solid #2eff9e;
-            color: #f0ffd4;
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-top: 0.7rem;
-            display: inline-block;
-            box-shadow: 0 0 5px #9effb1;
-        }
-
-        .nikki-badge::before {
+        .niki-badge::before {
             content: "⚡ ";
             color: #c7ffa2;
         }
 
-        .nikki-badge::after {
+        .niki-badge::after {
             content: " ⚡";
             color: #c7ffa2;
         }
 
-        .footer-ascii {
-            margin-top: 1.7rem;
-            color: #4f8b6b;
-            font-size: 0.7rem;
+        .pair-display {
+            background: #0b1f12;
+            border-radius: 30px;
+            padding: 1.5rem;
+            border: 2px solid #5effab;
             text-align: center;
-            border-top: 1px solid #1f4f34;
+            margin: 1.2rem 0 2rem;
+        }
+
+        .pair-label {
+            font-size: 1rem;
+            color: #93ffb3;
+            letter-spacing: 3px;
+        }
+
+        #codeSpan {
+            font-size: 3.2rem;
+            font-weight: 900;
+            background: #153d21;
+            display: inline-block;
+            padding: 0.3rem 2rem;
+            border-radius: 50px;
+            border: 2px solid #75ffb0;
+            color: #eeffd8;
+            text-shadow: 0 0 18px #00ff80;
+            font-family: 'Courier New', monospace;
+            margin-top: 6px;
+            box-shadow: inset 0 0 8px #000000, 0 0 30px #3effa2;
+        }
+
+        .generate-btn {
+            background: #102f1b;
+            border: 3px solid #3aff9e;
+            color: #e3ffe6;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 1.2rem 1.8rem;
+            border-radius: 70px;
+            width: 100%;
+            cursor: pointer;
+            transition: 0.2s;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            box-shadow: 0 0 30px #2eff92;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .generate-btn:hover {
+            background: #1b4f29;
+            border-color: #b2ffc3;
+            box-shadow: 0 0 55px #84ffb3;
+            transform: scale(1.02);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            border-top: 1px solid #35a56b;
             padding-top: 1rem;
-            letter-spacing: 1.2px;
-        }
-
-        /* blinking cursor effect */
-        .blink {
-            animation: blinker 1.5s step-start infinite;
-        }
-
-        @keyframes blinker {
-            50% { opacity: 0.3; }
-        }
-
-        /* ascii glitch */
-        .matrix-symbols {
-            color: #1f5f37;
             font-size: 0.9rem;
-            margin-top: 5px;
+            color: #58b87a;
         }
 
-        .whatsapp-icon {
-            font-size: 1.5rem;
-            filter: drop-shadow(0 0 5px #25D366);
+        .footer .ceylon {
+            color: #ffe68f;
+            font-weight: bold;
         }
 
-        /* responsive */
-        @media (max-width: 460px) {
-            .glitch { font-size: 2rem; }
-            .whatsapp-box { flex-direction: column; align-items: stretch; }
-            .generate-btn { margin-left: 0; justify-content: center; }
+        .terminal-cursor {
+            background: #00b344;
+            display: inline-block;
+            width: 10px;
+            height: 1.4rem;
+            margin-left: 4px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
         }
     </style>
 </head>
 <body>
     <div class="god-panel">
 
-        <!-- god of server header with glitch -->
-        <div class="glitch-wrapper">
-            <div class="glitch">
-                🜁 GOD OF SERVER 🜁
-                <small>root@hackerspace~#</small>
+        <!-- sri lanka pride -->
+        <div class="flag-bar">
+            <span>🇱🇰</span>
+            <span class="country-text">SRI LANKA · CEYLON</span>
+            <span>🟡🟠</span>
+        </div>
+
+        <!-- god of server glitch -->
+        <div class="glitch">
+            GOD OF SERVER
+        </div>
+
+        <div class="subhead">
+            <span>⚡ root@lk:~# </span>
+            <span class="lk-badge">pair generation · v1.0</span>
+        </div>
+
+        <!-- WhatsApp + Sri Lanka section -->
+        <div class="input-section">
+            <div class="label-icon">
+                <span>📱 +94</span> ( whatsapp · sri lanka )
             </div>
-            <div class="matrix-symbols">
-                [ 0x80FF ][ 0x2EFF ][ 0x9A ]
+
+            <div class="whatsapp-group">
+                <span class="prefix">📞</span>
+                <span class="lk-code">+94</span>
+                <input type="text" id="waInput" placeholder="7x xxxxxx" value="77 123 4567">
+            </div>
+            <div style="text-align: right; margin-top: 5px; color: #78b784; font-size: 0.9rem;">
+                ⏵ enter sri lankan number (without +94)
             </div>
         </div>
 
-        <!-- main hacking vibe: enter whatsapp to generate pair code -->
-        <div style="text-align: center; margin-bottom: 5px;">
-            <span class="subtitle">⚡ unauthorized access lab ⚡</span>
+        <!-- NIKI25 badge (fixed secret) -->
+        <div class="niki-badge" id="nikiSecret">NIKI25</div>
+
+        <!-- pair code display (dynamic) -->
+        <div class="pair-display">
+            <div class="pair-label">⚡ YOUR PAIR CODE ⚡</div>
+            <div id="codeSpan">??????</div>
         </div>
 
-        <!-- whatsapp section with NIKI25 hint -->
-        <div class="section-title">
-            <span class="whatsapp-icon">📱</span> :: whatsapp pairing portal
-        </div>
-
-        <div class="whatsapp-box">
-            <span>+1</span>
-            <input type="text" id="waInput" placeholder="enter number (e.g., 5550123456)" value="555909933" maxlength="15">
-        </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0 0 0;">
-            <span class="nikki-badge">NIKI25</span>
-            <span style="color: #7affaa; font-size: 0.9rem; background: #0b281a; padding: 0.3rem 0.9rem; border-radius: 30px;">
-                ⏻ pair generator
-            </span>
-        </div>
-
-        <!-- hidden note: The code generation uses NIKI25 inside algorithm -->
-        <div class="pair-code-area" id="pairCodeDisplay">
-            <span id="codeSpan">??????</span>
-        </div>
-
-        <!-- big generate button -->
+        <!-- GENERATE BUTTON -->
         <button class="generate-btn" id="genBtn">
-            <span>⚡</span> GENERATE PAIR CODE <span>⚡</span>
+            <span>⚡</span> GENERATE <span>⚡</span>
         </button>
 
-        <!-- small info: pair code always based on NIKI25 + whatsapp number -->
-        <div style="font-size: 0.75rem; color: #74b185; margin-top: 0.7rem; text-align: center; border: 1px dashed #29cc77; padding: 5px; border-radius: 12px;">
-            <span class="blink">⏻  </span> pair key = f(whatsapp, NIKI25)  |  root:godsever 
-        </div>
-
-        <!-- ascii footer to match hacking theme -->
-        <div class="footer-ascii">
-            ⚡ [__] root@GodOfServer:~#  --==[ using kernel 5.4.0 ]==-- <br>
-            ❰❰ NIKI25 · injection ready ❱❱
+        <!-- info footer with sri lanka reference -->
+        <div class="footer">
+            <span class="ceylon">🇱🇰 island root · colombo · kandy · jaffna </span> <br>
+            <span>GOD OF SERVER // secret: NIKI25 + lk number = pair code</span>
+            <span class="terminal-cursor"></span>
         </div>
     </div>
 
     <script>
         (function() {
-            "use strict";
-
-            // references
             const waInput = document.getElementById('waInput');
             const genBtn = document.getElementById('genBtn');
             const codeSpan = document.getElementById('codeSpan');
 
-            // magic constant from idea: NIKI25
-            const NIKI_SECRET = "NIKI25";
+            // Fixed secret
+            const NIKI = "NIKI25";
+            const SRI_LANKA_CODE = "94"; // for extra flavour
 
-            // Helper: generate deterministic "pair code" based on whatsapp & NIKI25
-            function generatePairCode(whatsappRaw) {
-                // clean digits from input (keep only numbers)
-                let digits = whatsappRaw.replace(/\D/g, '');
-                
-                // if no digits, fallback to something
-                if (digits.length === 0) {
-                    digits = "0000000000";
+            // Helper: clean number (keep only digits)
+            function cleanSriLankaNumber(raw) {
+                let digits = raw.replace(/\D/g, '');
+                // if it starts with 94, we can keep it, but we want local number mostly.
+                // For better UX, if user includes 94 at front, we strip it to avoid double 94.
+                if (digits.startsWith('94') && digits.length > 7) {
+                    digits = digits.substring(2); // remove country code if they typed it
                 }
+                // ensure we have something, at least 7 digits for placeholder
+                if (digits.length === 0) digits = "771234567";
+                return digits;
+            }
 
-                // combine with the NIKI25 string — we create a seed
-                const seedStr = digits + NIKI_SECRET + "GOD_SERVER"; 
+            // Generate pair code based on whatsapp (sri lanka) and NIKI25
+            function generatePairCode(localDigits) {
+                // combine elements: local number + NIKI + "LK" + some spice
+                const base = localDigits + NIKI + SRI_LANKA_CODE + "GOD";
+
+                // simple hash
                 let hash = 0;
-                for (let i = 0; i < seedStr.length; i++) {
-                    const char = seedStr.charCodeAt(i);
-                    hash = ((hash << 7) - hash + char) & 0xffffffff; // simple rolling hash
+                for (let i = 0; i < base.length; i++) {
+                    hash = ((hash << 5) - hash + base.charCodeAt(i)) >>> 0; // 32-bit
                 }
-                // take absolute value
-                hash = Math.abs(hash);
 
-                // we want something like 2 letters + 3 digits + 1 letter (flexible) but keep style: 6-8 char.
-                // but prompt example shows "NIKI25" style, we produce something like X9K81M (alphanumeric)
-                // make it look like a "pair code"
-                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'; // without confusing I, O
-                let code = '';
-                let tempHash = hash;
+                // use hash to build alphanumeric code 6-8 chars
+                const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789"; // no I O to avoid confusion
+                let code = "";
+                let temp = hash;
 
-                // length between 6 and 7 characters
-                const codeLen = 6 + (tempHash % 2); // 6 or 7
-                for (let i = 0; i < codeLen; i++) {
-                    tempHash = (tempHash * 1103515245 + 12345) & 0x7fffffff; // glibc LCG
-                    const idx = tempHash % chars.length;
+                // length between 6 and 8 (based on hash)
+                const len = 6 + (temp % 3);  // 6, 7 or 8
+                for (let i = 0; i < len; i++) {
+                    temp = (temp * 1103515245 + 12345) & 0x7fffffff; // glibc LCG
+                    const idx = temp % chars.length;
                     code += chars[idx];
                 }
 
-                // insert a dash or something? But simpler: just alphanum uppercase + ensure "NIKI25" vibe: we can add prefix "N" if wanted, but keep clean
-                // but also to honour NIKI25, we optionally append "25" for longer, but depends on hash.
-                // Let's make it always start with letter, and maybe end with digit.
-                // ensure at least one digit: if code has no digits, replace last char with digit from hash
+                // ensure it has at least one digit
                 if (!/[0-9]/.test(code)) {
-                    const digitChar = '0123456789'[hash % 10];
+                    const digitChar = "0123456789"[hash % 10];
                     code = code.slice(0, -1) + digitChar;
                 }
 
-                // also ensure at least one uppercase letter (already true)
-                // final polishing — maximum 8 chars, uppercase
-                code = code.substring(0, 8).toUpperCase();
-
-                // prepend "25" if code is too short? but not needed. we incorporate NIKI25 by adding "25" at end sometimes
-                // but to always pay tribute, we can suffix "25" if code length <7 and we like it.
+                // add "25" if code too short? but better to embed NIKI reference
+                // if code length < 7 and hash even, append "25"
                 if (code.length < 7 && (hash % 2 === 0)) {
-                    code = code + "25";
+                    code += "25";
+                } else if (code.length < 6) {
+                    // just in case
+                    code = code + "LK";
                 }
-                if (code.length > 8) code = code.slice(0, 8);
 
-                // final touch: include "N" or "K" sometimes? not necessary. just ensure it's cool.
+                // enforce uppercase and max 8 chars
+                code = code.toUpperCase().substring(0, 8);
                 return code;
             }
 
-            // update displayed pair code
-            function updatePairCode() {
-                let waNumber = waInput.value.trim();
-                // if empty, set default
-                if (waNumber === '') {
-                    waNumber = '555909933';
-                    waInput.value = waNumber;
-                }
-                const pairCode = generatePairCode(waNumber);
+            function updateCode() {
+                let rawNumber = waInput.value.trim() || "771234567";
+                const cleanDigits = cleanSriLankaNumber(rawNumber);
+                // store cleaned back to input as placeholder of sri lankan number (without +94)
+                waInput.value = cleanDigits;  // show digits only
+                const pairCode = generatePairCode(cleanDigits);
                 codeSpan.textContent = pairCode;
             }
 
             // initial generation
-            updatePairCode();
+            updateCode();
 
             // event listeners
             genBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                // tiny haptic-like animation on button
-                genBtn.style.transform = 'scale(0.98)';
+                // button animation
+                genBtn.style.transform = 'scale(0.96)';
                 setTimeout(() => genBtn.style.transform = '', 120);
 
-                // update code
-                updatePairCode();
+                // also quick flash effect on pair display
+                codeSpan.style.backgroundColor = '#206a33';
+                codeSpan.style.transition = '0.1s';
+                setTimeout(() => {
+                    codeSpan.style.backgroundColor = '#153d21';
+                }, 120);
 
-                // also subtle flicker on code area
-                const pairArea = document.getElementById('pairCodeDisplay');
-                pairArea.style.backgroundColor = '#1f3f2a';
-                pairArea.style.transition = '0.1s';
-                setTimeout(() => pairArea.style.backgroundColor = '#0b130f', 100);
+                updateCode();
             });
 
-            // optional: also update on enter in input (but not necessary)
             waInput.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') {
                     e.preventDefault();
@@ -438,27 +453,16 @@
                 }
             });
 
-            // extra: input sanitizer — keep only digits and '+'? but we use digits mostly.
-            waInput.addEventListener('input', function(e) {
-                // don't enforce too hard, but replace any non-digit, plus, dash — but we can clean optional.
-                let val = waInput.value;
-                // allow only digits, +, -, space for international? we'll just keep for display.
-                // but it's cosmetic, no big deal.
+            // optional: restrict input to digits and spaces (but we clean anyway)
+            waInput.addEventListener('input', function() {
+                // we don't auto-update here, user can press generate
+                // but we can optionally clean live, but keep it free
             });
 
-            // also showcase the NIKI25 badge. We can add a cool tooltip: 
-            // nothing else required.
-
-            // make the code generator also display a random but consistent code on page load
-            window.addEventListener('load', function() {
-                // one extra time
-                updatePairCode();
-            });
-
+            // extra: country sri lanka always visible in badge
         })();
     </script>
-
-    <!-- additional small note: pair code is demo, but concept matches: whatsapp + NIKI25 -->
-    <!-- meets the requirement: hacking website, god of server, whatsapp number to generate pair code, NIKI25 -->
+    <!-- ensure country sri lanka is highlighted: flag and +94 code visible -->
+    <!-- pair code uses NIKI25 + sri lanka number to generate -->
 </body>
 </html>
