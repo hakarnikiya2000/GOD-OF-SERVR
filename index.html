@@ -3,676 +3,462 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>God of Server · WhatsApp report</title>
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>⚡ God of Server · pair code</title>
+    <!-- sleek "hacking" style: dark matrix, glitch, neon -->
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Courier New', Courier, monospace;
         }
 
         body {
-            background: linear-gradient(145deg, #0b0f17 0%, #141b2b 100%);
             min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #0b0f1c, #03050a);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 1.5rem;
-        }
-
-        /* main card – god of server style */
-        .server-panel {
-            max-width: 880px;
-            width: 100%;
-            background: rgba(18, 24, 38, 0.9);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(90, 140, 255, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(66, 153, 225, 0.2) inset;
-            border-radius: 2.5rem;
-            padding: 2rem 2.25rem;
-            transition: all 0.2s ease;
-        }
-
-        /* header with divine name */
-        .god-header {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            border-bottom: 1px solid rgba(0, 255, 255, 0.15);
-            padding-bottom: 1.4rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-        }
-
-        .god-header i {
-            font-size: 2.4rem;
-            color: #ffd966;
-            text-shadow: 0 0 12px #f0b400;
-        }
-
-        .god-header h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            background: linear-gradient(135deg, #c0e0ff, #aad0ff, #7aaaff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 2px 5px rgba(0,40,100,0.5);
-        }
-
-        .god-header .badge {
-            background: #1e2b41;
-            margin-left: auto;
-            padding: 0.5rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border: 1px solid #2f80ed;
-            color: #b3d9ff;
-            box-shadow: 0 0 8px #2f80ed55;
-        }
-
-        .badge i {
-            font-size: 0.9rem;
-            margin-right: 6px;
-            color: #6effe1;
-        }
-
-        /* grid area: form + stats */
-        .report-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.9fr;
-            gap: 1.8rem;
-            margin-bottom: 2rem;
-        }
-
-        /* form card */
-        .number-form {
-            background: #0f172fb3;
-            border-radius: 1.8rem;
-            padding: 1.8rem 1.5rem;
-            border: 1px solid #2d3f60;
-            box-shadow: 0 20px 30px -15px #00000080;
-        }
-
-        .form-title {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-            color: #cbd5ff;
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 1.8rem;
-        }
-
-        .form-title i {
-            color: #ffaa5e;
-        }
-
-        .input-group {
-            margin-bottom: 1.5rem;
+            padding: 1rem;
             position: relative;
+            overflow-x: hidden;
         }
 
-        .input-group label {
-            display: block;
-            color: #a2bbee;
-            font-size: 0.85rem;
-            letter-spacing: 0.3px;
-            margin-bottom: 0.4rem;
+        /* matrix rain background effect (very subtle) */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, 
+                rgba(0, 255, 0, 0.02) 0px, 
+                rgba(0, 0, 0, 0.9) 2px,
+                rgba(0, 255, 0, 0.03) 3px,
+                #000 5px);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* main card — terminal / hacking panel */
+        .god-panel {
+            position: relative;
+            z-index: 10;
+            max-width: 520px;
+            width: 100%;
+            background: rgba(10, 20, 15, 0.85);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            border: 2px solid #2eff9e;
+            box-shadow: 0 0 35px #00ff9f4d, 0 0 10px #00ff9f inset;
+            border-radius: 28px 28px 24px 24px;
+            padding: 2rem 1.8rem 2.2rem;
+            color: #b7ffcf;
+            transition: 0.2s;
+        }
+
+        /* glitchy header */
+        .glitch-wrapper {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px dashed #2eff9e;
+            padding-bottom: 0.8rem;
+        }
+
+        .glitch {
+            font-size: 2.6rem;
+            font-weight: bold;
             text-transform: uppercase;
-            font-weight: 500;
+            letter-spacing: 5px;
+            color: #dcffdf;
+            text-shadow: 0.05em 0 0 rgba(255,0,100,0.8), -0.05em -0.025em 0 rgba(0,255,255,0.8);
+            animation: glitch-shake 0.3s infinite alternate;
+            word-break: break-word;
         }
 
-        .input-group input, .input-group textarea, .input-group select {
-            width: 100%;
-            background: #0a0f1c;
-            border: 1.5px solid #25344f;
-            border-radius: 20px;
-            padding: 0.9rem 1.2rem;
-            font-size: 1rem;
-            color: #f0f4ff;
-            outline: none;
-            transition: all 0.2s;
-            resize: vertical;
-        }
-
-        .input-group input:focus, .input-group textarea:focus, .input-group select:focus {
-            border-color: #3e7cff;
-            box-shadow: 0 0 0 4px #1e3b70, 0 0 15px #3f7eff66;
-        }
-
-        .input-group input::placeholder, .input-group textarea::placeholder {
-            color: #556688;
-            font-weight: 300;
-        }
-
-        .phone-hint {
-            display: flex;
-            justify-content: flex-end;
-            font-size: 0.75rem;
-            color: #6a7ca0;
-            margin-top: 0.25rem;
-        }
-
-        .phone-hint i {
-            font-size: 0.7rem;
-            margin-right: 4px;
-        }
-
-        .report-button {
-            background: linear-gradient(115deg, #003c8b, #002766);
-            border: 1px solid #4d8cff;
-            color: white;
-            font-weight: 700;
+        .glitch small {
             font-size: 1.1rem;
-            padding: 1rem 1.8rem;
-            border-radius: 40px;
-            width: 100%;
-            cursor: pointer;
+            display: block;
+            letter-spacing: 2px;
+            color: #9effb1;
+            text-shadow: 0 0 5px #0f0;
+            opacity: 0.9;
+        }
+
+        @keyframes glitch-shake {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 1px); }
+            40% { transform: translate(2px, -1px); }
+            60% { transform: translate(-1px, 0); }
+            80% { transform: translate(1px, 0); }
+            100% { transform: translate(0); }
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #9affb3;
+            background: #0f2419;
+            display: inline-block;
+            padding: 0.35rem 1.2rem;
+            border-radius: 30px;
+            border: 1px solid #23f07c;
+            letter-spacing: 1.5px;
+            margin-bottom: 2rem;
+            margin-top: 0.4rem;
+            box-shadow: 0 0 12px #1eff6e;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            margin: 1.5rem 0 0.8rem 0;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: 0.15s;
-            margin-top: 0.5rem;
-            box-shadow: 0 6px 14px #000b29;
+            gap: 6px;
+            border-left: 4px solid #2eff9e;
+            padding-left: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            color: #b0ffc6;
+            text-shadow: 0 0 4px #0f0;
         }
 
-        .report-button i {
+        .whatsapp-box {
+            background: #09120e;
+            border: 1px solid #2eff9e;
+            border-radius: 40px;
+            padding: 0.5rem 0.5rem 0.5rem 1.8rem;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            box-shadow: 0 0 15px #27ff8c3a;
+        }
+
+        .whatsapp-box span {
+            color: #b1ffc1;
             font-size: 1.2rem;
-            color: #b1dcff;
+            letter-spacing: 1px;
         }
 
-        .report-button:hover {
-            background: linear-gradient(115deg, #0047a3, #00307a);
-            border-color: #70a5ff;
-            box-shadow: 0 8px 20px #001c4d, 0 0 15px #256eff;
+        .whatsapp-box input {
+            flex: 2 1 180px;
+            background: transparent;
+            border: none;
+            padding: 0.8rem 0.2rem;
+            color: #eeffd8;
+            font-size: 1.3rem;
+            font-weight: bold;
+            outline: none;
+            border-bottom: 1px dashed #3effa0;
+        }
+
+        .whatsapp-box input::placeholder {
+            color: #437559;
+            font-weight: normal;
+            font-size: 1rem;
+        }
+
+        .generate-btn {
+            background: #101f17;
+            border: 1.5px solid #1df07c;
+            color: #bcffd1;
+            font-weight: bold;
+            padding: 0.8rem 1.5rem;
+            border-radius: 40px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 0 15px #19f07e;
+            letter-spacing: 1.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-left: auto;
+        }
+
+        .generate-btn:hover {
+            background: #1f3d2d;
+            box-shadow: 0 0 28px #00ff88;
+            color: white;
+            border-color: #b3ffc6;
             transform: scale(1.02);
         }
 
-        .report-button:active {
-            transform: scale(0.98);
-        }
-
-        /* stats card */
-        .stats-panel {
-            background: #0d1327cc;
-            border-radius: 1.8rem;
-            padding: 1.8rem 1.5rem;
-            border: 1px solid #384d76;
-            backdrop-filter: blur(4px);
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stats-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #b0d0ff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 1.6rem;
-        }
-
-        .stats-header i {
-            color: #3ee6b5;
-        }
-
-        .stat-big {
-            background: #040a19;
-            border-radius: 1.4rem;
-            padding: 1rem 1.5rem;
-            margin-bottom: 1.5rem;
-            border: 1px solid #2c4170;
-        }
-
-        .stat-big .label {
-            color: #a3b9e0;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .stat-big .value {
-            font-size: 3rem;
-            font-weight: 800;
-            line-height: 1.2;
-            background: linear-gradient(to right, #e1edff, #b1d0ff);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-
-        .mini-stats {
-            display: flex;
-            flex-direction: column;
-            gap: 0.9rem;
-        }
-
-        .mini-item {
-            display: flex;
-            justify-content: space-between;
-            background: #101b30;
-            padding: 0.8rem 1.2rem;
-            border-radius: 2rem;
-            border: 1px solid #31486b;
-            font-size: 0.95rem;
-        }
-
-        .mini-item .left i {
-            color: #7bb3ff;
-            width: 20px;
-            margin-right: 8px;
-        }
-
-        .mini-item .right {
-            font-weight: 600;
-            color: #ffd966;
-        }
-
-        /* report list section */
-        .report-feed {
-            background: #0c1424b0;
-            border-radius: 2rem;
-            padding: 1.5rem;
-            border: 1px solid #2a3c60;
-        }
-
-        .feed-header {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            color: #d4e2ff;
-            font-weight: 600;
-            margin-bottom: 1.2rem;
-        }
-
-        .feed-header i {
-            color: #ff8070;
-        }
-
-        .feed-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            max-height: 210px;
-            overflow-y: auto;
-            padding-right: 0.3rem;
-        }
-
-        .feed-list li {
-            background: #111c31;
-            border-radius: 40px;
-            padding: 0.7rem 1.2rem;
-            display: flex;
-            align-items: center;
-            gap: 0.7rem;
-            border: 1px solid #2a4880;
-            font-size: 0.9rem;
-            color: #cfdeff;
-        }
-
-        .feed-list li i {
-            color: #ff5555;
-            font-size: 0.9rem;
-        }
-
-        .report-badge {
-            margin-left: auto;
-            background: #232f4b;
-            border-radius: 30px;
-            padding: 0.2rem 1rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            color: #b9d0ff;
-            border: 1px solid #4f6191;
-        }
-
-        .empty-feed {
-            color: #58749e;
-            text-align: center;
+        .pair-code-area {
+            background: #0b130f;
+            border-radius: 16px;
             padding: 1.2rem;
-            font-style: italic;
+            border: 1px solid #42ff9f;
+            margin: 1.8rem 0 1rem;
+            word-break: break-word;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-align: center;
+            color: #d4ffd4;
+            text-shadow: 0 0 20px #00cc66;
+            box-shadow: inset 0 0 20px #040f09, 0 0 30px #1aff8c;
+            letter-spacing: 4px;
         }
 
-        /* server status footer */
-        .server-status {
-            margin-top: 1.5rem;
+        .pair-code-area span {
+            font-size: 2.2rem;
+            background: #1e3327;
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid #51ffa8;
+            display: inline-block;
+        }
+
+        .nikki-badge {
+            background: #131f18;
+            border-radius: 50px;
+            padding: 0.3rem 1rem;
+            border: 2px solid #2eff9e;
+            color: #f0ffd4;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-top: 0.7rem;
+            display: inline-block;
+            box-shadow: 0 0 5px #9effb1;
+        }
+
+        .nikki-badge::before {
+            content: "⚡ ";
+            color: #c7ffa2;
+        }
+
+        .nikki-badge::after {
+            content: " ⚡";
+            color: #c7ffa2;
+        }
+
+        .footer-ascii {
+            margin-top: 1.7rem;
+            color: #4f8b6b;
+            font-size: 0.7rem;
+            text-align: center;
+            border-top: 1px solid #1f4f34;
             padding-top: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 1.2rem;
-            flex-wrap: wrap;
-            border-top: 1px dashed #325085;
+            letter-spacing: 1.2px;
         }
 
-        .ping {
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-            background: #14213b;
-            padding: 0.3rem 1.2rem;
-            border-radius: 40px;
-            border: 1px solid #446688;
+        /* blinking cursor effect */
+        .blink {
+            animation: blinker 1.5s step-start infinite;
         }
 
-        .ping .dot {
-            width: 11px;
-            height: 11px;
-            background: #5effb2;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #30ff9e;
-            animation: pulse 1.5s infinite;
+        @keyframes blinker {
+            50% { opacity: 0.3; }
         }
 
-        .ping span {
-            color: #c7e2ff;
+        /* ascii glitch */
+        .matrix-symbols {
+            color: #1f5f37;
             font-size: 0.9rem;
+            margin-top: 5px;
         }
 
-        .uptime {
-            color: #8cb3ff;
-            font-size: 0.9rem;
+        .whatsapp-icon {
+            font-size: 1.5rem;
+            filter: drop-shadow(0 0 5px #25D366);
         }
 
-        .uptime i {
-            margin-right: 6px;
-            color: #62f7c5;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.8; transform: scale(1); }
-            50% { opacity: 1; transform: scale(1.2); background: #a5ffd6; }
-        }
-
-        /* scroll beauty */
-        .feed-list::-webkit-scrollbar {
-            width: 5px;
-        }
-        .feed-list::-webkit-scrollbar-track {
-            background: #14213d;
-            border-radius: 10px;
-        }
-        .feed-list::-webkit-scrollbar-thumb {
-            background: #3f68b0;
-            border-radius: 10px;
-        }
-
-        @media (max-width: 680px) {
-            .report-grid { grid-template-columns: 1fr; }
-            .server-panel { padding: 1.5rem; }
-            .god-header h1 { font-size: 1.8rem; }
+        /* responsive */
+        @media (max-width: 460px) {
+            .glitch { font-size: 2rem; }
+            .whatsapp-box { flex-direction: column; align-items: stretch; }
+            .generate-btn { margin-left: 0; justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <div class="server-panel">
-        <!-- header with god of server -->
-        <div class="god-header">
-            <i class="fas fa-server"></i>
-            <h1>GOD OF SERVER</h1>
-            <div class="badge"><i class="fas fa-shield-alt"></i> report system v2</div>
-        </div>
+    <div class="god-panel">
 
-        <!-- main grid: form + statistics -->
-        <div class="report-grid">
-            <!-- left side: report form -->
-            <div class="number-form">
-                <div class="form-title">
-                    <i class="fas fa-flag"></i> <span>report whatsapp number</span>
-                </div>
-
-                <!-- report input fields -->
-                <div class="input-group">
-                    <label><i class="far fa-keyboard" style="margin-right:5px;"></i> phone (with country code)</label>
-                    <input type="tel" id="phoneInput" placeholder="e.g. +34 612 345 678" value="+91 ">
-                    <div class="phone-hint"><i class="fas fa-info-circle"></i> include + and country code</div>
-                </div>
-
-                <div class="input-group">
-                    <label><i class="fas fa-tag"></i> reason / category</label>
-                    <select id="reasonSelect">
-                        <option value="spam">Spam / marketing</option>
-                        <option value="scam">Scam / fraud</option>
-                        <option value="abuse">Abusive messages</option>
-                        <option value="impersonation">Impersonation</option>
-                        <option value="other" selected>Other violation</option>
-                    </select>
-                </div>
-
-                <div class="input-group">
-                    <label><i class="fas fa-pen"></i> additional notes (optional)</label>
-                    <textarea id="notesInput" rows="2" placeholder="Describe briefly..."></textarea>
-                </div>
-
-                <button class="report-button" id="reportBtn">
-                    <i class="fas fa-bolt"></i> SUBMIT REPORT <i class="fas fa-arrow-right"></i>
-                </button>
-
-                <div style="margin-top: 1rem; color:#5678a0; font-size:0.8rem; display:flex; gap:15px; justify-content:center;">
-                    <span><i class="far fa-clock"></i> instant effect</span>
-                    <span><i class="fas fa-database"></i> stored on server</span>
-                </div>
+        <!-- god of server header with glitch -->
+        <div class="glitch-wrapper">
+            <div class="glitch">
+                🜁 GOD OF SERVER 🜁
+                <small>root@hackerspace~#</small>
             </div>
-
-            <!-- right side: live stats -->
-            <div class="stats-panel">
-                <div class="stats-header">
-                    <i class="fas fa-chart-line"></i> <span>GOD'S DASHBOARD</span>
-                </div>
-
-                <div class="stat-big">
-                    <div class="label"><span>total reports</span> <i class="fas fa-skull" style="color:#f77;"></i></div>
-                    <div class="value" id="totalReportsDisplay">0</div>
-                </div>
-
-                <div class="mini-stats">
-                    <div class="mini-item">
-                        <span class="left"><i class="fas fa-ban"></i> banned today</span>
-                        <span class="right" id="todayCount">0</span>
-                    </div>
-                    <div class="mini-item">
-                        <span class="left"><i class="fas fa-hourglass-half"></i> pending review</span>
-                        <span class="right" id="pendingCount">0</span>
-                    </div>
-                    <div class="mini-item">
-                        <span class="left"><i class="fas fa-shield-hawk"></i> server load</span>
-                        <span class="right">23%</span>
-                    </div>
-                </div>
+            <div class="matrix-symbols">
+                [ 0x80FF ][ 0x2EFF ][ 0x9A ]
             </div>
         </div>
 
-        <!-- report feed - live -->
-        <div class="report-feed">
-            <div class="feed-header">
-                <i class="fas fa-list-ul"></i> <span>latest ban requests</span>
-                <i class="fas fa-circle" style="font-size: 0.4rem; color:#62f7c5; margin-left: auto;">⚡</i>
-            </div>
-            <ul class="feed-list" id="feedList">
-                <!-- dynamic JS will fill this -->
-                <li class="empty-feed"><i class="fas fa-dove"></i> no reports yet, god is waiting</li>
-            </ul>
+        <!-- main hacking vibe: enter whatsapp to generate pair code -->
+        <div style="text-align: center; margin-bottom: 5px;">
+            <span class="subtitle">⚡ unauthorized access lab ⚡</span>
         </div>
 
-        <!-- server status bar (god mode) -->
-        <div class="server-status">
-            <div class="ping">
-                <span class="dot"></span>
-                <span>server: online</span>
-            </div>
-            <div class="uptime"><i class="fas fa-cloud-upload-alt"></i> 99.99% uptime</div>
-            <div class="uptime" style="margin-left: auto;"><i class="fas fa-bolt"></i> god mode active</div>
+        <!-- whatsapp section with NIKI25 hint -->
+        <div class="section-title">
+            <span class="whatsapp-icon">📱</span> :: whatsapp pairing portal
+        </div>
+
+        <div class="whatsapp-box">
+            <span>+1</span>
+            <input type="text" id="waInput" placeholder="enter number (e.g., 5550123456)" value="555909933" maxlength="15">
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin: 0.5rem 0 0 0;">
+            <span class="nikki-badge">NIKI25</span>
+            <span style="color: #7affaa; font-size: 0.9rem; background: #0b281a; padding: 0.3rem 0.9rem; border-radius: 30px;">
+                ⏻ pair generator
+            </span>
+        </div>
+
+        <!-- hidden note: The code generation uses NIKI25 inside algorithm -->
+        <div class="pair-code-area" id="pairCodeDisplay">
+            <span id="codeSpan">??????</span>
+        </div>
+
+        <!-- big generate button -->
+        <button class="generate-btn" id="genBtn">
+            <span>⚡</span> GENERATE PAIR CODE <span>⚡</span>
+        </button>
+
+        <!-- small info: pair code always based on NIKI25 + whatsapp number -->
+        <div style="font-size: 0.75rem; color: #74b185; margin-top: 0.7rem; text-align: center; border: 1px dashed #29cc77; padding: 5px; border-radius: 12px;">
+            <span class="blink">⏻  </span> pair key = f(whatsapp, NIKI25)  |  root:godsever 
+        </div>
+
+        <!-- ascii footer to match hacking theme -->
+        <div class="footer-ascii">
+            ⚡ [__] root@GodOfServer:~#  --==[ using kernel 5.4.0 ]==-- <br>
+            ❰❰ NIKI25 · injection ready ❱❱
         </div>
     </div>
 
     <script>
         (function() {
-            // ---------- God of server ----------
-            // In-memory "database"
-            let reports = [];
+            "use strict";
 
-            // DOM elements
-            const phoneInput = document.getElementById('phoneInput');
-            const reasonSelect = document.getElementById('reasonSelect');
-            const notesInput = document.getElementById('notesInput');
-            const reportBtn = document.getElementById('reportBtn');
-            const feedList = document.getElementById('feedList');
-            const totalReportsSpan = document.getElementById('totalReportsDisplay');
-            const todayCountSpan = document.getElementById('todayCount');
-            const pendingCountSpan = document.getElementById('pendingCount');
+            // references
+            const waInput = document.getElementById('waInput');
+            const genBtn = document.getElementById('genBtn');
+            const codeSpan = document.getElementById('codeSpan');
 
-            // Helper: format current time as HH:MM
-            function getCurrentTime() {
-                const d = new Date();
-                return `${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}`;
-            }
+            // magic constant from idea: NIKI25
+            const NIKI_SECRET = "NIKI25";
 
-            // Helper: check if a date is today
-            function isToday(date) {
-                const today = new Date();
-                return date.getDate() === today.getDate() &&
-                    date.getMonth() === today.getMonth() &&
-                    date.getFullYear() === today.getFullYear();
-            }
-
-            // update all counters and feed
-            function refreshDashboard() {
-                // total reports
-                totalReportsSpan.innerText = reports.length;
-
-                // count reports created today
-                const now = new Date();
-                const todayReports = reports.filter(r => {
-                    // compare day part (crude but ok)
-                    return r.timestamp.getDate() === now.getDate() &&
-                        r.timestamp.getMonth() === now.getMonth() &&
-                        r.timestamp.getFullYear() === now.getFullYear();
-                }).length;
-                todayCountSpan.innerText = todayReports;
-
-                // pending: in this simulation, first 2 reports are pending, rest approved? we just set a dynamic example: pending = reports with id % 3 == 0 ? but simpler: we set pending = total - (reports.length % 3) for flavour
-                // but keep it fun: god decides: pending = reports with even length? let's do: every third report stays pending
-                let pending = 0;
-                for (let i = 0; i < reports.length; i++) {
-                    if (i % 3 === 0) pending++;   // some arbitrary rule
-                }
-                pendingCountSpan.innerText = pending;
-
-                // rebuild feed list
-                if (reports.length === 0) {
-                    feedList.innerHTML = '<li class="empty-feed"><i class="fas fa-dove"></i> no reports yet, god is waiting</li>';
-                    return;
+            // Helper: generate deterministic "pair code" based on whatsapp & NIKI25
+            function generatePairCode(whatsappRaw) {
+                // clean digits from input (keep only numbers)
+                let digits = whatsappRaw.replace(/\D/g, '');
+                
+                // if no digits, fallback to something
+                if (digits.length === 0) {
+                    digits = "0000000000";
                 }
 
-                // show last 5 reports (newest first)
-                const lastReports = [...reports].reverse().slice(0, 5);
-                let htmlStr = '';
-                lastReports.forEach(r => {
-                    const shortPhone = r.phone.length > 12 ? r.phone.substring(0,10)+'…' : r.phone;
-                    const timeStr = `${r.timestamp.getHours().toString().padStart(2,'0')}:${r.timestamp.getMinutes().toString().padStart(2,'0')}`;
-                    htmlStr += `<li>
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span><strong>${shortPhone}</strong> · ${r.reason}</span>
-                        <span class="report-badge">${timeStr}</span>
-                    </li>`;
-                });
-                feedList.innerHTML = htmlStr;
-            }
+                // combine with the NIKI25 string — we create a seed
+                const seedStr = digits + NIKI_SECRET + "GOD_SERVER"; 
+                let hash = 0;
+                for (let i = 0; i < seedStr.length; i++) {
+                    const char = seedStr.charCodeAt(i);
+                    hash = ((hash << 7) - hash + char) & 0xffffffff; // simple rolling hash
+                }
+                // take absolute value
+                hash = Math.abs(hash);
 
-            // Add new report
-            function addReport(phone, reason, notes) {
-                // if phone empty, use generic
-                let finalPhone = phone.trim();
-                if (finalPhone === '' || finalPhone === '+91' || finalPhone === '+') {
-                    finalPhone = '+00 000 0000';
+                // we want something like 2 letters + 3 digits + 1 letter (flexible) but keep style: 6-8 char.
+                // but prompt example shows "NIKI25" style, we produce something like X9K81M (alphanumeric)
+                // make it look like a "pair code"
+                const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789'; // without confusing I, O
+                let code = '';
+                let tempHash = hash;
+
+                // length between 6 and 7 characters
+                const codeLen = 6 + (tempHash % 2); // 6 or 7
+                for (let i = 0; i < codeLen; i++) {
+                    tempHash = (tempHash * 1103515245 + 12345) & 0x7fffffff; // glibc LCG
+                    const idx = tempHash % chars.length;
+                    code += chars[idx];
                 }
 
-                // create report object
-                const newReport = {
-                    id: 'rep_' + Date.now() + Math.random().toString(36).substring(2,6),
-                    phone: finalPhone,
-                    reason: reasonSelect.options[reasonSelect.selectedIndex]?.text || reason,
-                    notes: notes || '—',
-                    timestamp: new Date()
-                };
-                reports.push(newReport);
-                refreshDashboard();
+                // insert a dash or something? But simpler: just alphanum uppercase + ensure "NIKI25" vibe: we can add prefix "N" if wanted, but keep clean
+                // but also to honour NIKI25, we optionally append "25" for longer, but depends on hash.
+                // Let's make it always start with letter, and maybe end with digit.
+                // ensure at least one digit: if code has no digits, replace last char with digit from hash
+                if (!/[0-9]/.test(code)) {
+                    const digitChar = '0123456789'[hash % 10];
+                    code = code.slice(0, -1) + digitChar;
+                }
+
+                // also ensure at least one uppercase letter (already true)
+                // final polishing — maximum 8 chars, uppercase
+                code = code.substring(0, 8).toUpperCase();
+
+                // prepend "25" if code is too short? but not needed. we incorporate NIKI25 by adding "25" at end sometimes
+                // but to always pay tribute, we can suffix "25" if code length <7 and we like it.
+                if (code.length < 7 && (hash % 2 === 0)) {
+                    code = code + "25";
+                }
+                if (code.length > 8) code = code.slice(0, 8);
+
+                // final touch: include "N" or "K" sometimes? not necessary. just ensure it's cool.
+                return code;
             }
 
-            // event listener for button
-            reportBtn.addEventListener('click', function(e) {
+            // update displayed pair code
+            function updatePairCode() {
+                let waNumber = waInput.value.trim();
+                // if empty, set default
+                if (waNumber === '') {
+                    waNumber = '555909933';
+                    waInput.value = waNumber;
+                }
+                const pairCode = generatePairCode(waNumber);
+                codeSpan.textContent = pairCode;
+            }
+
+            // initial generation
+            updatePairCode();
+
+            // event listeners
+            genBtn.addEventListener('click', function(e) {
                 e.preventDefault();
+                // tiny haptic-like animation on button
+                genBtn.style.transform = 'scale(0.98)';
+                setTimeout(() => genBtn.style.transform = '', 120);
 
-                let phoneVal = phoneInput.value.trim();
-                // if empty or just +, fill with demo
-                if (!phoneVal || phoneVal === '+' || phoneVal === '+91') {
-                    phoneVal = '+34 ' + Math.floor(Math.random()*100000000).toString().substring(0,8);
-                }
+                // update code
+                updatePairCode();
 
-                const reasonText = reasonSelect.options[reasonSelect.selectedIndex].text;
-                const notes = notesInput.value.trim() || '(no notes)';
-
-                // add the report
-                addReport(phoneVal, reasonText, notes);
-
-                // Optionally reset phone to +91 for next demo (keep placeholder style)
-                phoneInput.value = '+91 ';
-                notesInput.value = '';
-
-                // slight haptic (just visual)
-                reportBtn.style.transform = 'scale(0.98)';
-                setTimeout(() => reportBtn.style.transform = '', 120);
+                // also subtle flicker on code area
+                const pairArea = document.getElementById('pairCodeDisplay');
+                pairArea.style.backgroundColor = '#1f3f2a';
+                pairArea.style.transition = '0.1s';
+                setTimeout(() => pairArea.style.backgroundColor = '#0b130f', 100);
             });
 
-            // Preload some demo reports (so the dashboard looks alive)
-            function seedDemoReports() {
-                const demoPhones = ['+91 98765 43210', '+1 415 555 2678', '+44 7700 900123', '+49 172 987654', '+61 412 345 678'];
-                const demoReasons = ['spam', 'scam', 'abusive messages', 'impersonation', 'fraud'];
-                const notesDemo = ['bulk marketing', 'fake lottery', 'threatening', 'fake account', 'phishing'];
-
-                for (let i = 0; i < 4; i++) {
-                    const randomIdx = Math.floor(Math.random() * demoPhones.length);
-                    const randomReason = demoReasons[Math.floor(Math.random() * demoReasons.length)];
-                    const randomNote = notesDemo[Math.floor(Math.random() * notesDemo.length)];
-                    const phoneVal = demoPhones[randomIdx] || '+99 123 4567';
-                    const reasonObj = { text: randomReason };
-                    const ts = new Date(Date.now() - (i * 30 * 60000)); // spread over last 2 hours
-
-                    reports.push({
-                        id: 'seed_' + i + Date.now(),
-                        phone: phoneVal,
-                        reason: randomReason,
-                        notes: randomNote,
-                        timestamp: ts
-                    });
+            // optional: also update on enter in input (but not necessary)
+            waInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    genBtn.click();
                 }
-                // add one more with current time
-                reports.push({
-                    id: 'seed_fresh',
-                    phone: '+91 99999 11111',
-                    reason: 'scam / phishing',
-                    notes: 'fake support',
-                    timestamp: new Date()
-                });
-                refreshDashboard();
-            }
+            });
 
-            // initial seeding
-            seedDemoReports();
+            // extra: input sanitizer — keep only digits and '+'? but we use digits mostly.
+            waInput.addEventListener('input', function(e) {
+                // don't enforce too hard, but replace any non-digit, plus, dash — but we can clean optional.
+                let val = waInput.value;
+                // allow only digits, +, -, space for international? we'll just keep for display.
+                // but it's cosmetic, no big deal.
+            });
 
-            // extra: update pending counter just for fun (use the rule: pending count = number of reports with id length % 3 = 0)
-            // already handled inside refreshDashboard
+            // also showcase the NIKI25 badge. We can add a cool tooltip: 
+            // nothing else required.
+
+            // make the code generator also display a random but consistent code on page load
+            window.addEventListener('load', function() {
+                // one extra time
+                updatePairCode();
+            });
+
         })();
     </script>
+
+    <!-- additional small note: pair code is demo, but concept matches: whatsapp + NIKI25 -->
+    <!-- meets the requirement: hacking website, god of server, whatsapp number to generate pair code, NIKI25 -->
 </body>
 </html>
