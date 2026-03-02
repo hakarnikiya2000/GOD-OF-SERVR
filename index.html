@@ -3,466 +3,419 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇱🇰 GOD OF SERVER · SRI LANKA · pair code</title>
+    <title>⚡ God of Server ⚡</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Segoe UI', system-ui, sans-serif;
         }
 
         body {
             min-height: 100vh;
-            background: #0b1a0f;
-            background-image: 
-                linear-gradient(0deg, #0c1e12 1px, transparent 1px),
-                linear-gradient(90deg, #0c1e12 1px, transparent 1px);
-            background-size: 30px 30px;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at 30% 30%, #1a0f2e, #0a0c0f);
             padding: 1rem;
-            position: relative;
         }
 
-        /* flicker overlay */
-        body::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 30% 40%, #1a3a1a, #030803);
-            opacity: 0.5;
-            mix-blend-mode: multiply;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .god-panel {
-            position: relative;
-            z-index: 20;
-            max-width: 600px;
+        /* main chat card with glassmorphism */
+        .chat-container {
             width: 100%;
-            background: rgba(6, 18, 10, 0.9);
-            backdrop-filter: blur(4px);
-            border: 3px solid #00ff99;
-            box-shadow: 0 0 40px #00ff80, 0 0 15px #39ff9e inset;
-            border-radius: 40px 40px 30px 30px;
-            padding: 2rem 2rem 2.5rem;
-            color: #bbffd1;
+            max-width: 750px;
+            height: 85vh;
+            background: rgba(20, 25, 35, 0.4);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(100, 150, 255, 0.25);
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(170, 0, 255, 0.1) inset;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
         }
 
-        /* sri lanka flag hint */
-        .flag-bar {
+        /* header with divine style */
+        .header {
+            padding: 1.2rem 2rem;
+            background: rgba(8, 10, 15, 0.7);
+            border-bottom: 1px solid #4a2a6b;
             display: flex;
             align-items: center;
-            gap: 8px;
-            margin-bottom: 1.5rem;
-            background: #0f2f1a;
-            padding: 0.6rem 1.2rem;
-            border-radius: 60px;
-            border: 1px solid #43ffa2;
-            width: fit-content;
-        }
-
-        .flag-bar span {
-            font-size: 2rem;
-            filter: drop-shadow(0 0 4px #ffd966);
-        }
-
-        .flag-bar .country-text {
-            font-size: 1.4rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            color: #f0ffb0;
-            text-shadow: 0 0 10px yellowgreen;
-        }
-
-        .glitch {
-            font-size: 2.8rem;
-            font-weight: 900;
-            text-transform: uppercase;
-            color: #c6ffd9;
-            text-shadow: 0.03em 0 0 #ff00b3, -0.03em -0.02em 0 #00ebff;
-            animation: glitchtweak 0.4s infinite alternate;
-            line-height: 1.1;
-            word-break: break-word;
-        }
-
-        @keyframes glitchtweak {
-            0% { transform: translate(0); opacity: 1; }
-            20% { transform: translate(-2px, 1px); }
-            40% { transform: translate(2px, -1px); }
-            60% { transform: skew(0.5deg, -0.2deg); }
-            80% { transform: skew(-0.5deg, 0.2deg); }
-            100% { transform: translate(0); }
-        }
-
-        .subhead {
-            display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin: 1rem 0 2rem 0;
-            background: #112213;
-            padding: 0.5rem 1rem;
-            border-radius: 30px;
-            border: 1px solid #1eff8c;
-            font-size: 1.1rem;
-            color: #baffc6;
             flex-wrap: wrap;
+            gap: 0.5rem 1rem;
         }
 
-        .subhead .lk-badge {
-            background: #000;
-            color: #c5ffae;
-            padding: 0.2rem 1rem;
-            border-radius: 30px;
-            border: 1px dashed #18ff87;
+        .title {
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            background: linear-gradient(135deg, #c3a0ff, #80d4ff, #ffd966);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px #5f3b9e;
         }
 
-        .input-section {
-            margin: 2rem 0 1.2rem;
-        }
-
-        .label-icon {
+        .status {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 1.4rem;
-            margin-bottom: 0.7rem;
-            color: #dbffd7;
-            border-left: 5px solid #43ffa2;
-            padding-left: 16px;
+            gap: 0.6rem;
+            background: rgba(0, 10, 20, 0.7);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #3c3f6e;
+            box-shadow: 0 0 12px #2a1f4a;
+        }
+
+        .led {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #20dd6b;
+            box-shadow: 0 0 12px #26ff7b;
+            animation: pulse 1.8s infinite;
+        }
+
+        .status-text {
+            color: #bcd5ff;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
             text-transform: uppercase;
-        }
-
-        .whatsapp-group {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            background: #0d1d12;
-            border: 2px solid #34ff9e;
-            border-radius: 80px;
-            padding: 0.3rem 0.3rem 0.3rem 1.8rem;
-            gap: 8px;
-            box-shadow: 0 0 20px #47ff8b;
-        }
-
-        .whatsapp-group .prefix {
-            font-size: 1.6rem;
-            color: #d0ffbe;
-            font-weight: bold;
-        }
-
-        .whatsapp-group .lk-code {
-            background: #124f29;
-            padding: 0.5rem 0.9rem;
-            border-radius: 50px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #e2ffb0;
-            border: 1px solid #64ffa4;
+            font-size: 0.85rem;
             letter-spacing: 1px;
         }
 
-        .whatsapp-group input {
-            flex: 3 1 200px;
-            background: transparent;
-            border: none;
-            padding: 1rem 0.3rem;
-            color: white;
-            font-size: 1.6rem;
-            font-weight: bold;
-            outline: none;
-            border-bottom: 2px dotted #4aff9e;
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.2); background: #7effb2; }
+            100% { opacity: 1; transform: scale(1); }
         }
 
-        .whatsapp-group input::placeholder {
-            color: #2c6b42;
-            font-size: 1.1rem;
-        }
-
-        .niki-badge {
-            background: #102f1b;
-            border: 2px solid #50ffa8;
-            color: #e3ffe6;
-            padding: 0.8rem 2rem;
-            border-radius: 40px;
-            font-size: 1.8rem;
-            font-weight: 800;
-            text-align: center;
-            margin: 2rem 0 1.5rem;
-            box-shadow: 0 0 25px #00ff6a;
-            letter-spacing: 4px;
-        }
-
-        .niki-badge::before {
-            content: "⚡ ";
-            color: #c7ffa2;
-        }
-
-        .niki-badge::after {
-            content: " ⚡";
-            color: #c7ffa2;
-        }
-
-        .pair-display {
-            background: #0b1f12;
-            border-radius: 30px;
-            padding: 1.5rem;
-            border: 2px solid #5effab;
-            text-align: center;
-            margin: 1.2rem 0 2rem;
-        }
-
-        .pair-label {
-            font-size: 1rem;
-            color: #93ffb3;
-            letter-spacing: 3px;
-        }
-
-        #codeSpan {
-            font-size: 3.2rem;
-            font-weight: 900;
-            background: #153d21;
-            display: inline-block;
-            padding: 0.3rem 2rem;
-            border-radius: 50px;
-            border: 2px solid #75ffb0;
-            color: #eeffd8;
-            text-shadow: 0 0 18px #00ff80;
-            font-family: 'Courier New', monospace;
-            margin-top: 6px;
-            box-shadow: inset 0 0 8px #000000, 0 0 30px #3effa2;
-        }
-
-        .generate-btn {
-            background: #102f1b;
-            border: 3px solid #3aff9e;
-            color: #e3ffe6;
-            font-size: 2rem;
-            font-weight: bold;
-            padding: 1.2rem 1.8rem;
-            border-radius: 70px;
-            width: 100%;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            box-shadow: 0 0 30px #2eff92;
+        /* main chat window — custom scrollbar */
+        .chat-window {
+            flex: 1;
+            padding: 1.5rem 1.8rem;
+            overflow-y: auto;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
+            flex-direction: column;
+            gap: 1rem;
+            scroll-behavior: smooth;
+            background: rgba(0, 0, 0, 0.2);
         }
 
-        .generate-btn:hover {
-            background: #1b4f29;
-            border-color: #b2ffc3;
-            box-shadow: 0 0 55px #84ffb3;
-            transform: scale(1.02);
-        }
-
-        .footer {
-            margin-top: 2rem;
-            text-align: center;
-            border-top: 1px solid #35a56b;
-            padding-top: 1rem;
-            font-size: 0.9rem;
-            color: #58b87a;
-        }
-
-        .footer .ceylon {
-            color: #ffe68f;
-            font-weight: bold;
-        }
-
-        .terminal-cursor {
-            background: #00b344;
-            display: inline-block;
+        /* glassmorphism scrollbar */
+        .chat-window::-webkit-scrollbar {
             width: 10px;
-            height: 1.4rem;
+        }
+
+        .chat-window::-webkit-scrollbar-track {
+            background: rgba(15, 20, 30, 0.6);
+            border-radius: 20px;
+            margin-block: 0.5rem;
+        }
+
+        .chat-window::-webkit-scrollbar-thumb {
+            background: linear-gradient(145deg, #b280ff, #5f4d9e);
+            border-radius: 20px;
+            border: 2px solid rgba(0, 0, 0, 0.3);
+            box-shadow: inset 0 0 6px #c7a2ff;
+        }
+
+        .chat-window::-webkit-scrollbar-thumb:hover {
+            background: #caacff;
+        }
+
+        /* base message style */
+        .message {
+            max-width: 75%;
+            padding: 0.8rem 1.4rem;
+            border-radius: 2rem 2rem 0.4rem 2rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            word-break: break-word;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: 0.2s;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background: linear-gradient(145deg, #0059b3, #0077ff);
+            color: white;
+            border-bottom-right-radius: 0.2rem;
+            border: 1px solid #6bb9ff;
+            box-shadow: 0 0 20px #0066ff80;
+        }
+
+        .god-message {
+            align-self: flex-start;
+            background: linear-gradient(145deg, #3d2a1a, #61481c);
+            color: #ffdfa0;
+            border-bottom-left-radius: 0.2rem;
+            border: 1px solid #eeb840;
+            box-shadow: 0 0 20px #ffb34780, 0 0 5px #fdbc4c;
+            text-shadow: 0 0 6px #fbb03b;
+        }
+
+        /* typing effect cursor */
+        .typing-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1.2em;
+            background-color: #ffd966;
             margin-left: 4px;
-            animation: blink 1s infinite;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
         }
 
         @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
+            from, to { background-color: transparent; }
+            50% { background-color: #ffd966; }
+        }
+
+        /* input area with glass */
+        .input-area {
+            background: rgba(8, 10, 18, 0.8);
+            backdrop-filter: blur(12px);
+            padding: 1.2rem 1.8rem;
+            display: flex;
+            gap: 0.8rem;
+            border-top: 1px solid #4e3b6e;
+            align-items: center;
+        }
+
+        .input-field {
+            flex: 1;
+            background: rgba(0, 5, 15, 0.6);
+            border: 1px solid #5f5199;
+            border-radius: 3rem;
+            padding: 0.9rem 1.8rem;
+            font-size: 1rem;
+            color: #f0eaff;
+            outline: none;
+            transition: all 0.2s;
+            box-shadow: 0 0 8px #40407a;
+        }
+
+        .input-field:focus {
+            border-color: #b380ff;
+            box-shadow: 0 0 20px #aa80ff;
+            background: #0a0d1a;
+        }
+
+        .input-field::placeholder {
+            color: #a09bbe;
+            font-style: italic;
+        }
+
+        .send-btn {
+            background: linear-gradient(145deg, #5d3a9e, #3f2787);
+            border: none;
+            border-radius: 3rem;
+            padding: 0.9rem 2rem;
+            font-weight: bold;
+            color: #f0e3ff;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px #401f6e, 0 0 15px #7d4ec7 inset;
+            transition: 0.15s;
+            border: 1px solid #b085ff;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .send-btn:hover {
+            background: linear-gradient(145deg, #734dbe, #53379b);
+            box-shadow: 0 0 28px #aa80ff, 0 0 15px #bf8cff inset;
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .send-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* small godlike footer */
+        .footer-note {
+            text-align: center;
+            color: #6a5e8a;
+            font-size: 0.7rem;
+            border-top: 1px dashed #3f3470;
+            padding: 0.3rem;
+            background: rgba(0,0,0,0.3);
+            font-family: monospace;
+            letter-spacing: 1px;
+        }
+
+        /* initial system message */
+        .welcome-message {
+            align-self: center;
+            background: rgba(40,20,60,0.5);
+            border: 1px solid gold;
+            color: #dbbdff;
+            border-radius: 40px;
+            padding: 0.4rem 1.5rem;
+            font-size: 0.9rem;
+            backdrop-filter: blur(2px);
         }
     </style>
 </head>
 <body>
-    <div class="god-panel">
-
-        <!-- sri lanka pride -->
-        <div class="flag-bar">
-            <span>🇱🇰</span>
-            <span class="country-text">SRI LANKA · CEYLON</span>
-            <span>🟡🟠</span>
-        </div>
-
-        <!-- god of server glitch -->
-        <div class="glitch">
-            GOD OF SERVER
-        </div>
-
-        <div class="subhead">
-            <span>⚡ root@lk:~# </span>
-            <span class="lk-badge">pair generation · v1.0</span>
-        </div>
-
-        <!-- WhatsApp + Sri Lanka section -->
-        <div class="input-section">
-            <div class="label-icon">
-                <span>📱 +94</span> ( whatsapp · sri lanka )
-            </div>
-
-            <div class="whatsapp-group">
-                <span class="prefix">📞</span>
-                <span class="lk-code">+94</span>
-                <input type="text" id="waInput" placeholder="7x xxxxxx" value="77 123 4567">
-            </div>
-            <div style="text-align: right; margin-top: 5px; color: #78b784; font-size: 0.9rem;">
-                ⏵ enter sri lankan number (without +94)
+    <div class="chat-container">
+        <!-- header with status -->
+        <div class="header">
+            <span class="title">⚡ GOD OF SERVER ⚡</span>
+            <div class="status">
+                <span class="led"></span>
+                <span class="status-text">server status: online</span>
             </div>
         </div>
 
-        <!-- NIKI25 badge (fixed secret) -->
-        <div class="niki-badge" id="nikiSecret">NIKI25</div>
-
-        <!-- pair code display (dynamic) -->
-        <div class="pair-display">
-            <div class="pair-label">⚡ YOUR PAIR CODE ⚡</div>
-            <div id="codeSpan">??????</div>
+        <!-- main chat display -->
+        <div class="chat-window" id="chatWindow">
+            <div class="welcome-message">🙏 speak, mortal. the server god listens...</div>
         </div>
 
-        <!-- GENERATE BUTTON -->
-        <button class="generate-btn" id="genBtn">
-            <span>⚡</span> GENERATE <span>⚡</span>
-        </button>
-
-        <!-- info footer with sri lanka reference -->
-        <div class="footer">
-            <span class="ceylon">🇱🇰 island root · colombo · kandy · jaffna </span> <br>
-            <span>GOD OF SERVER // secret: NIKI25 + lk number = pair code</span>
-            <span class="terminal-cursor"></span>
+        <!-- input area -->
+        <div class="input-area">
+            <input type="text" class="input-field" id="userInput" placeholder="type your prayer..." autocomplete="off">
+            <button class="send-btn" id="sendBtn">📡 SEND</button>
         </div>
+        <div class="footer-note">⚡ divine latency: < 1ms ⚡</div>
     </div>
 
     <script>
         (function() {
-            const waInput = document.getElementById('waInput');
-            const genBtn = document.getElementById('genBtn');
-            const codeSpan = document.getElementById('codeSpan');
+            // ---------- divine responses array ----------
+            const godlyResponses = [
+                "I have rerouted the packets of your destiny.",
+                "Your request is processed. Thou shalt not lag.",
+                "The server logs speak of your arrival.",
+                "By my will, the latency drops.",
+                "I have forked your process. Twice.",
+                "The cloud parts for you, mortal.",
+                "Error 418: I am a teapot. (Just kidding, message sent).",
+                "Your uptime is blessed, for now.",
+                "I peered into the fibre and saw your soul.",
+                "Thine cache is purified. Go in peace.",
+                "A 404 error in your fate? Never.",
+                "I have mounted thy storage to the stars.",
+                "The switch whispers thy name."
+            ];
 
-            // Fixed secret
-            const NIKI = "NIKI25";
-            const SRI_LANKA_CODE = "94"; // for extra flavour
+            // DOM elements
+            const chatWindow = document.getElementById('chatWindow');
+            const userInput = document.getElementById('userInput');
+            const sendBtn = document.getElementById('sendBtn');
 
-            // Helper: clean number (keep only digits)
-            function cleanSriLankaNumber(raw) {
-                let digits = raw.replace(/\D/g, '');
-                // if it starts with 94, we can keep it, but we want local number mostly.
-                // For better UX, if user includes 94 at front, we strip it to avoid double 94.
-                if (digits.startsWith('94') && digits.length > 7) {
-                    digits = digits.substring(2); // remove country code if they typed it
+            // helper: append message (type: 'user' or 'god')
+            function appendMessage(text, type) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                if (type === 'user') {
+                    messageDiv.classList.add('user-message');
+                } else {
+                    messageDiv.classList.add('god-message');
                 }
-                // ensure we have something, at least 7 digits for placeholder
-                if (digits.length === 0) digits = "771234567";
-                return digits;
+                messageDiv.textContent = text;
+                chatWindow.appendChild(messageDiv);
+                // scroll to bottom
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+                return messageDiv;
             }
 
-            // Generate pair code based on whatsapp (sri lanka) and NIKI25
-            function generatePairCode(localDigits) {
-                // combine elements: local number + NIKI + "LK" + some spice
-                const base = localDigits + NIKI + SRI_LANKA_CODE + "GOD";
+            // ---------- TYPING EFFECT FOR GOD MESSAGE ----------
+            // this function creates a temporary god message with typing cursor, then finalizes.
+            function simulateGodTyping(finalText) {
+                // disable send button & input to avoid stacking (optional)
+                sendBtn.disabled = true;
+                userInput.disabled = true;
 
-                // simple hash
-                let hash = 0;
-                for (let i = 0; i < base.length; i++) {
-                    hash = ((hash << 5) - hash + base.charCodeAt(i)) >>> 0; // 32-bit
+                // create a temporary message element with a cursor
+                const tempMessage = document.createElement('div');
+                tempMessage.classList.add('message', 'god-message');
+                // add invisible content to keep height? we'll start empty with cursor
+                const contentSpan = document.createElement('span');
+                contentSpan.textContent = '';  // will fill gradually
+                const cursorSpan = document.createElement('span');
+                cursorSpan.classList.add('typing-cursor');
+                tempMessage.appendChild(contentSpan);
+                tempMessage.appendChild(cursorSpan);
+                chatWindow.appendChild(tempMessage);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+
+                let index = 0;
+                const typingSpeed = 45; // milliseconds per character
+
+                function typeNext() {
+                    if (index < finalText.length) {
+                        contentSpan.textContent += finalText.charAt(index);
+                        index++;
+                        chatWindow.scrollTop = chatWindow.scrollHeight; // keep scroll down
+                        setTimeout(typeNext, typingSpeed);
+                    } else {
+                        // typing finished: remove cursor, keep message
+                        cursorSpan.remove();
+                        // re-enable inputs
+                        sendBtn.disabled = false;
+                        userInput.disabled = false;
+                        // keep the message as it is (no cursor)
+                        // (optional) tiny spark: add a glow class
+                        tempMessage.style.transition = 'box-shadow 0.3s';
+                        tempMessage.style.boxShadow = '0 0 28px gold, 0 0 40px #b380ff';
+                        setTimeout(() => {
+                            tempMessage.style.boxShadow = '0 0 20px #ffb34780, 0 0 5px #fdbc4c';
+                        }, 600);
+                    }
                 }
 
-                // use hash to build alphanumeric code 6-8 chars
-                const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ0123456789"; // no I O to avoid confusion
-                let code = "";
-                let temp = hash;
-
-                // length between 6 and 8 (based on hash)
-                const len = 6 + (temp % 3);  // 6, 7 or 8
-                for (let i = 0; i < len; i++) {
-                    temp = (temp * 1103515245 + 12345) & 0x7fffffff; // glibc LCG
-                    const idx = temp % chars.length;
-                    code += chars[idx];
-                }
-
-                // ensure it has at least one digit
-                if (!/[0-9]/.test(code)) {
-                    const digitChar = "0123456789"[hash % 10];
-                    code = code.slice(0, -1) + digitChar;
-                }
-
-                // add "25" if code too short? but better to embed NIKI reference
-                // if code length < 7 and hash even, append "25"
-                if (code.length < 7 && (hash % 2 === 0)) {
-                    code += "25";
-                } else if (code.length < 6) {
-                    // just in case
-                    code = code + "LK";
-                }
-
-                // enforce uppercase and max 8 chars
-                code = code.toUpperCase().substring(0, 8);
-                return code;
+                // start typing after a tiny divine pause (makes it feel thoughtful)
+                setTimeout(typeNext, 300);
             }
 
-            function updateCode() {
-                let rawNumber = waInput.value.trim() || "771234567";
-                const cleanDigits = cleanSriLankaNumber(rawNumber);
-                // store cleaned back to input as placeholder of sri lankan number (without +94)
-                waInput.value = cleanDigits;  // show digits only
-                const pairCode = generatePairCode(cleanDigits);
-                codeSpan.textContent = pairCode;
-            }
+            // ---------- handle send message ----------
+            function handleSend() {
+                const message = userInput.value.trim();
+                if (message === '') return;
 
-            // initial generation
-            updateCode();
+                // 1. Append user message
+                appendMessage(message, 'user');
 
-            // event listeners
-            genBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                // button animation
-                genBtn.style.transform = 'scale(0.96)';
-                setTimeout(() => genBtn.style.transform = '', 120);
+                // clear input
+                userInput.value = '';
 
-                // also quick flash effect on pair display
-                codeSpan.style.backgroundColor = '#206a33';
-                codeSpan.style.transition = '0.1s';
+                // 2. Prepare divine response (random pick)
+                const randomIndex = Math.floor(Math.random() * godlyResponses.length);
+                const godReply = godlyResponses[randomIndex];
+
+                // 3. Simulate typing effect for god (with a short delay to feel natural)
                 setTimeout(() => {
-                    codeSpan.style.backgroundColor = '#153d21';
-                }, 120);
+                    simulateGodTyping(godReply);
+                }, 400);
+            }
 
-                updateCode();
-            });
-
-            waInput.addEventListener('keypress', function(e) {
+            // Event listeners
+            sendBtn.addEventListener('click', handleSend);
+            userInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
-                    genBtn.click();
+                    handleSend();
                 }
             });
 
-            // optional: restrict input to digits and spaces (but we clean anyway)
-            waInput.addEventListener('input', function() {
-                // we don't auto-update here, user can press generate
-                // but we can optionally clean live, but keep it free
-            });
+            // optional: focus input on load
+            userInput.focus();
 
-            // extra: country sri lanka always visible in badge
+            // disable send on initial if needed, but fine.
         })();
     </script>
-    <!-- ensure country sri lanka is highlighted: flag and +94 code visible -->
-    <!-- pair code uses NIKI25 + sri lanka number to generate -->
 </body>
 </html>
